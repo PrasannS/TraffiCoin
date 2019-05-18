@@ -23,6 +23,10 @@ import com.google.android.gms.tasks.OnSuccessListener;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
+
+import cryptonite.android.apps.com.traficoin.Models.DaoSession;
+import cryptonite.android.apps.com.traficoin.Models.Trip;
 
 public class LocationTracker
 {
@@ -32,14 +36,20 @@ public class LocationTracker
     String cur = "Unknown";
     ArrayList<String> prev = new ArrayList<>();
     double sLat, sLong;
+    long starttime;
+    long endtime;
     public FusedLocationProviderClient fusedLocationClient;
     int sHour, sMin;
     Context con;
+    Context c;
     Calendar cal = Calendar.getInstance();
+    public DaoSession daoSession;
     public  LocationTracker() {}
-    public LocationTracker(Context context)
+    public LocationTracker(Context context,Context cont)
     {
         con = context;
+        c=cont;
+        daoSession = ((App)cont).getDaoSession();
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(context);
     }
     protected void start(Context context)
@@ -137,6 +147,7 @@ public class LocationTracker
                                     sLat = location.getLatitude();
                                     sHour = cal.get(Calendar.HOUR_OF_DAY);
                                     sMin = cal.get(Calendar.MINUTE);
+                                    starttime = (new Date()).getTime();
 
                                 }
                             }
@@ -155,6 +166,14 @@ public class LocationTracker
     }
     public void addTrip(double sLat, double sLong, double eLat, double eLong, int sHr, int sMin, int eHr, int eMin, String type)
     {
-
+        Trip trip = new Trip();
+        trip.setStartlat(sLat);
+        trip.setEndlat(eLat);
+        trip.setStartlng(sLong);
+        trip.setEndlng(eLong);
+        if(!type.equals("on_bicycle")){
+            trip.setType(1);
+        }
+        else trip.setType(4);
     }
 }
