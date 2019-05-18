@@ -25,6 +25,9 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.PriorityQueue;
 
+import cryptonite.android.apps.com.traficoin.Models.DaoSession;
+import cryptonite.android.apps.com.traficoin.Models.Trip;
+
 public class LocationTracker
 {
     public static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
@@ -36,11 +39,15 @@ public class LocationTracker
     public FusedLocationProviderClient fusedLocationClient;
     int sHour, sMin;
     Context con;
+    Context c;
     Calendar cal = Calendar.getInstance();
+    public DaoSession daoSession;
     public  LocationTracker() {}
-    public LocationTracker(Context context)
+    public LocationTracker(Context context,Context cont)
     {
         con = context;
+        c=cont;
+        daoSession = ((App)cont).getDaoSession();
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(context);
     }
     protected void start(Context context)
@@ -156,6 +163,7 @@ public class LocationTracker
     }
     public void addTrip(double sLat, double sLong, double eLat, double eLong, int sHr, int sMin, int eHr, int eMin, String type)
     {
+        Trip trip = new Trip();
 
     }
 }

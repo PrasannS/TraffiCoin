@@ -22,7 +22,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         t = findViewById(R.id.tv);
-        lc = new LocationTracker(this);
+        lc = new LocationTracker(this,getApplication());
         test = findViewById(R.id.record);
         lc.setTextView(t, test);
     }
