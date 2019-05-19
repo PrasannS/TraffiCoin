@@ -186,6 +186,15 @@ public class CoinGeneratorClient {
         return (sum/days.size());
     }
 
+    public double getCoinBalance(){
+        List<Transaction>days = daoSession.getTransactionDao().loadAll();
+        double sum = 0;
+        for(Transaction d:days){
+            sum+=d.getCost();
+        }
+        return sum;
+    }
+
 
 
 
