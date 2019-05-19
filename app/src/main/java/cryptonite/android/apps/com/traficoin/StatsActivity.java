@@ -1,5 +1,6 @@
 package cryptonite.android.apps.com.traficoin;
 
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -27,6 +28,12 @@ public class StatsActivity extends AppCompatActivity {
         LineData lineData = new LineData(dataSet);
         distanceChart.setData(lineData);
         distanceChart.invalidate();
+
+        ViewPager viewPager = findViewById(R.id.viewPager);
+        viewPager.setOffscreenPageLimit(1);
+        SwipeAdapter swipeAdapter = new SwipeAdapter(getSupportFragmentManager());
+        viewPager.setAdapter(swipeAdapter);
+        viewPager.setCurrentItem(0);
 
     }
 }
