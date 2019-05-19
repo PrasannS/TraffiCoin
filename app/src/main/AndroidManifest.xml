@@ -46,6 +46,7 @@
         <activity
             android:name=".shop_company_products"
             android:screenOrientation="portrait" />
+        <activity android:name=".product_purchase"/>
         <activity
             android:name=".GoalSetActivity"
             android:screenOrientation="portrait" />

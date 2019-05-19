@@ -1,15 +1,17 @@
 package cryptonite.android.apps.com.traficoin;
 
 import android.content.Intent;
+import android.media.Image;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Button;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.ImageButton;
 
 
 public class shop extends AppCompatActivity {
-    private Button toProductList;
+    private ImageButton toProductList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

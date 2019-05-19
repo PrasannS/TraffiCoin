@@ -16,4 +16,13 @@
         android:scrollbars="vertical">
     </android.support.v7.widget.RecyclerView>
 
+    <ImageButton
+        android:id="@+id/hide"
+        android:layout_marginRight="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:src="@drawable/starbuck_product"
+        android:background="@android:color/white"
+        />
+
 </RelativeLayout>

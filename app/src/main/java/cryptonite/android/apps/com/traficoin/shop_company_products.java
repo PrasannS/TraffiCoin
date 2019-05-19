@@ -11,10 +11,14 @@ import android.support.v7.widget.RecyclerView;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.ImageButton;
 
 import java.util.ArrayList;
 
 public class shop_company_products extends AppCompatActivity{
+
+    private ImageButton hide;
 
     private RecyclerView productRecycler;
     private productListAdapter productListAdapter;
@@ -42,6 +46,15 @@ public class shop_company_products extends AppCompatActivity{
         productList.add(new companyProduct(R.drawable.starbucks_example, "Javachip Frappuccino", 6900));
         productList.add(new companyProduct(R.drawable.starbucks_example, "Javachip Frappuccino", 6900));
         productList.add(new companyProduct(R.drawable.starbucks_example, "Javachip Frappuccino", 6900));
+
+        hide = findViewById(R.id.hide);
+        hide.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(shop_company_products.this, product_purchase.class));
+                hide.setVisibility(v.INVISIBLE);
+            }
+        });
 
 
 
