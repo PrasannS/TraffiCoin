@@ -159,6 +159,7 @@ public class BackgroundService extends Service implements RetrofitClient.Traffic
 
     @Override
     public void onTrafficFailure() {
+        System.out.println("SOMETHING BAD HAPPENED WITH TRAFFIC API");
 
     }
 }
