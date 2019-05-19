@@ -12,6 +12,7 @@ import org.w3c.dom.Text;
 public class profile extends AppCompatActivity {
 
     private Button toPurchaseHistory;
+    private Button tripHistorybtn;
 
     private TextView averageTime;
     private TextView averageMile;
@@ -24,14 +25,32 @@ public class profile extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
-        toPurchaseHistory = findViewById(R.id.purchaseHistory);
+        averageTime = (TextView)findViewById(R.id.averageTime);
+        CoinGeneratorClient cg = new CoinGeneratorClient(getApplication());
+
+        averageMile = (TextView)findViewById(R.id.averageMile);
+
+        toPurchaseHistory = (Button)findViewById(R.id.purchaseHistory);
         toPurchaseHistory.setOnClickListener(new View.OnClickListener() {
             //opening up the company_products activity
             @Override
             public void onClick(View view) {
-                Intent openPurchaseHistory = new Intent(profile.this, purchase_history.class);
+                Intent openPurchaseHistory = new Intent(getApplicationContext(), purchase_history.class);
                 startActivity(openPurchaseHistory);
             }
         });
+
+        tripHistorybtn = (Button)findViewById(R.id.tripHistory);
+        tripHistorybtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent openTripHistory = new Intent(getApplicationContext(), TripHistoryActivity.class);
+                startActivity(openTripHistory);
+            }
+        });
+
+        averageMile.setText("avg/m"+cg.getAverage(true));
+        averageTime.setText("avg/t"+cg.getAverage(false));
+
     }
 }

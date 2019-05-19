@@ -44,11 +44,19 @@
             </TextView>
         </RelativeLayout>
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="20dp"
+            android:background="@android:color/darker_gray"/>
+
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="2.5"
             android:orientation="horizontal">
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -75,6 +83,7 @@
                     android:gravity="center_horizontal"
                     android:text="0" />
             </LinearLayout>
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -126,6 +135,10 @@
                     android:id="@+id/tdcoinsdisplay"/>
             </LinearLayout>
         </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray"/>
 
         <LinearLayout
             android:layout_width="match_parent"
