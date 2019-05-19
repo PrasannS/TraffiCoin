@@ -174,6 +174,18 @@ public class CoinGeneratorClient {
         return java_date;
     }
 
+    //the boolean decides whether the avg of distance or time
+    public double getAverage(boolean distance){
+        List<Day>days = daoSession.getDayDao().loadAll();
+        double sum = 0;
+        for(Day d:days){
+            if(distance)
+            sum+=d.getMinutes();
+            else sum+=d.getMiles();
+        }
+        return (sum/days.size());
+    }
+
 
 
 

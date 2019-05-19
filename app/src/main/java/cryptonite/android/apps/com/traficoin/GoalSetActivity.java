@@ -21,13 +21,13 @@ public class GoalSetActivity extends AppCompatActivity {
     TextView timedisplay;
     public Goal distGoal, timeGoal;
     public DaoSession daoSession;
-    CoinGeneratorClient cg;
+    private CoinGeneratorClient cg;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_goal_set);
         distanceBar = (SeekBar)findViewById(R.id.distseekb);
-        confirmButton = (Button) findViewById(R.id.confirmButton);
+        confirmButton = (Button) findViewById(R.id.confirmBtn);
         timeBar = (SeekBar)findViewById(R.id.timeseekb);
         distancedisplay = (TextView)findViewById(R.id.distdisplay);
 
@@ -37,18 +37,19 @@ public class GoalSetActivity extends AppCompatActivity {
 
         timedisplay = (TextView) findViewById(R.id.timedisplay);
         daoSession = ((App) getApplication()).getDaoSession();
+        final double distAvg = cg.getAverage(true), timeAvg = cg.getAverage(false);
         distanceBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 distance = progress;
-                distancedisplay.setText("" + progress);
+                distancedisplay.setText("Today's Goal: " + progress + " miles\nYou will earn " + cg.avgDist(distAvg, progress));
             }
 
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
 
             }
-
+            
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
 
@@ -58,11 +59,7 @@ public class GoalSetActivity extends AppCompatActivity {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 time = progress;
-
-                timedisplay.setText("" + progress);
-
-                timedisplay.setText("Today's Goal: " + progress + " minutes\nYou will earn " + cg.avgDist(timeAvg, progress));
-
+                distancedisplay.setText("Today's Goal: " + progress + " minutes\nYou will earn " + cg.avgDist(timeAvg, progress));
             }
 
             @Override
@@ -82,7 +79,8 @@ public class GoalSetActivity extends AppCompatActivity {
                 distGoal = new Goal();
                 timeGoal.setDistance(false); timeGoal.setValue(time);
                 distGoal.setDistance(true); distGoal.setValue(distance);
-
+                daoSession.getGoalDao().insert(timeGoal);
+                daoSession.getGoalDao().insert(distGoal);
             }
         });
     }

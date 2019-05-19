@@ -16,12 +16,13 @@ public class DashboardActivity extends AppCompatActivity {
 
     Button distButton;
     Button timeButton;
-
+    LocationTracker lc;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
 
+        lc = new LocationTracker();
         distButton = (Button) findViewById(R.id.setDistanceGoalBtn);
         timeButton = (Button) findViewById(R.id.setTimeGoalBtn);
         distButton.setOnClickListener(new View.OnClickListener() {
@@ -61,9 +62,15 @@ public class DashboardActivity extends AppCompatActivity {
                         startActivity(inten);
                         break;
                 }
-                return true ;
+                return true;
             }
         });
 
+    }
+    @Override
+    protected void onStart() {
+        super.onStart();
+        startService(new Intent(this, ActivityDetectionService.class));
+        lc.start(this);
     }
 }

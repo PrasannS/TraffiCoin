@@ -60,7 +60,7 @@
                 android:id="@+id/distdisplay"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
+                android:layout_weight="0.5"
                 android:text="Distance Slider"/>
             <TextView
                 android:id="@+id/timedisplay"
@@ -68,6 +68,8 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:text="Time Slider"/>
+        </LinearLayout>
+
         </LinearLayout>
     <Button
         android:layout_width="wrap_content"
@@ -77,6 +79,6 @@
         android:id="@+id/confirmButton"/>
 
 
-    </LinearLayout>
+    /LinearLayout>
 
 </android.support.constraint.ConstraintLayout>
