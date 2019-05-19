@@ -46,7 +46,7 @@ public class RW_ implements Serializable, Parcelable
     private final static long serialVersionUID = 6369371451837870017L;
 
     protected RW_(Parcel in) {
-        in.readList(this.fIS, (cryptonite.android.apps.com.traficoin.FI.class.getClassLoader()));
+        in.readList(this.fIS, (FI.class.getClassLoader()));
         this.mid = ((String) in.readValue((String.class.getClassLoader())));
         this.lI = ((String) in.readValue((String.class.getClassLoader())));
         this.dE = ((String) in.readValue((String.class.getClassLoader())));

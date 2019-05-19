@@ -46,7 +46,7 @@ public class TrafficResponse implements Serializable, Parcelable
     private final static long serialVersionUID = -7364554065570595035L;
 
     protected TrafficResponse(Parcel in) {
-        in.readList(this.rWS, (cryptonite.android.apps.com.traficoin.RW.class.getClassLoader()));
+        in.readList(this.rWS, (RW.class.getClassLoader()));
         this.mAPVERSION = ((String) in.readValue((String.class.getClassLoader())));
         this.cREATEDTIMESTAMP = ((String) in.readValue((String.class.getClassLoader())));
         this.vERSION = ((String) in.readValue((String.class.getClassLoader())));
