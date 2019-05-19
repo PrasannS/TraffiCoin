@@ -31,7 +31,7 @@ public class DashboardActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
-
+        //CustomIntent.customType(this, "fadein-to-fadeout");
         lc = new LocationTracker();
         CoinGeneratorClient c = new CoinGeneratorClient(getApplication());
         mDaoSession = ((App)getApplication()).getDaoSession();
