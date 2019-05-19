@@ -19,12 +19,14 @@ public class TripHistoryRVAdapter extends RecyclerView.Adapter<TripHistoryRVAdap
 
     private ArrayList<String> distances = new ArrayList<>();
     private ArrayList<String> times = new ArrayList<>();
+    private ArrayList<String> dates = new ArrayList<>();
     private Context context;
 
-    public TripHistoryRVAdapter (Context context, ArrayList<String> distances, ArrayList<String> times){
+    public TripHistoryRVAdapter (Context context, ArrayList<String> distances, ArrayList<String> times, ArrayList<String> dates){
         this.context = context;
         this.distances = distances;
         this.times = times;
+        this.dates = dates;
     }
 
 
