@@ -60,8 +60,7 @@ public class BackgroundService extends Service implements RetrofitClient.Traffic
     }
 
     public ArrayList<Traffic>getRushHours(ArrayList<Traffic>traffics){
-        //TODO Samuel this is your method
-        return null;
+
     }
 
     public Route getRouteFromPriority(){

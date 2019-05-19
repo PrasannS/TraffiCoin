@@ -45,7 +45,7 @@ public class GoalSetActivity extends AppCompatActivity {
             public void onStartTrackingTouch(SeekBar seekBar) {
 
             }
-5
+
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
 
@@ -55,7 +55,7 @@ public class GoalSetActivity extends AppCompatActivity {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 time = progress;
-                distancedisplay.setText("Today's Goal: " + progress + " minutes\nYou will earn " + cg.avgDist(timeAvg, progress))
+                distancedisplay.setText("Today's Goal: " + progress + " minutes\nYou will earn " + cg.avgDist(timeAvg, progress));
             }
 
             @Override
