@@ -17,17 +17,13 @@ import static cryptonite.android.apps.com.traficoin.LocationTracker.TAG;
 
 public class TripRVAdapter extends RecyclerView.Adapter<TripRVAdapter.ViewHolder> {
 
-    private ArrayList<String> startLocs = new ArrayList<>();
-    private ArrayList<String> endLocs = new ArrayList<>();
     private ArrayList<String> distances = new ArrayList<>();
     private ArrayList<String> times = new ArrayList<>();
 
     private Context context;
 
-    public TripRVAdapter(Context context, ArrayList<String> slocs, ArrayList<String> elocs, ArrayList<String> dists, ArrayList<String> times){
+    public TripRVAdapter(Context context, ArrayList<String> dists, ArrayList<String> times){
         this.context = context;
-        startLocs = slocs;
-        endLocs = elocs;
         distances = dists;
         this.times = times;
     }
@@ -42,6 +38,10 @@ public class TripRVAdapter extends RecyclerView.Adapter<TripRVAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(TripRVAdapter.ViewHolder holder, final int position) {
+
+        holder.distanceTravelled.setText(distances.get(position));
+        holder.timeTravelled.setText(times.get(position));
+
         holder.parentLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -56,37 +56,18 @@ public class TripRVAdapter extends RecyclerView.Adapter<TripRVAdapter.ViewHolder
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
-        TextView startingLocation;
-        TextView endingLocation;
         TextView distanceTravelled;
         TextView timeTravelled;
         RelativeLayout parentLayout;
 
         public ViewHolder(View itemView){
             super(itemView);
-            startingLocation = itemView.findViewById(R.id.startloc);
-            endingLocation = itemView.findViewById(R.id.endloc);
             distanceTravelled =  itemView.findViewById(R.id.distttraveled);
             timeTravelled = itemView.findViewById(R.id.timetraveled);
             parentLayout = itemView.findViewById(R.id.parent_layout);
         }
     }
 
-    public ArrayList<String> getStartLocs() {
-        return startLocs;
-    }
-
-    public void setStartLocs(ArrayList<String> startLocs) {
-        this.startLocs = startLocs;
-    }
-
-    public ArrayList<String> getEndLocs() {
-        return endLocs;
-    }
-
-    public void setEndLocs(ArrayList<String> endLocs) {
-        this.endLocs = endLocs;
-    }
 
     public ArrayList<String> getDistances() {
         return distances;

@@ -18,21 +18,16 @@ public class TripHistoryActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trip_history);
-        startinglocs.add("Houston");
-        startinglocs.add("Katy");
-        endinglocs.add("China");
-        endinglocs.add("Japan");
         distances.add("69");
         distances.add("100");
         times.add("1");
         times.add("30");
         initRecyclerView();
-
     }
 
     private void initRecyclerView(){
         RecyclerView recyclerView = (RecyclerView)findViewById(R.id.tripRecyclerView);
-        TripRVAdapter adapter = new TripRVAdapter(this, startinglocs, endinglocs, distances, times);
+        TripRVAdapter adapter = new TripRVAdapter(this, distances, times);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
