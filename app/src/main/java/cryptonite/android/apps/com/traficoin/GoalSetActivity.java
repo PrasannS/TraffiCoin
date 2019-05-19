@@ -2,10 +2,12 @@ package cryptonite.android.apps.com.traficoin;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+import cryptonite.android.apps.com.traficoin.Models.DaoSession;
 import cryptonite.android.apps.com.traficoin.Models.Goal;
 
 public class GoalSetActivity extends AppCompatActivity {
@@ -14,36 +16,33 @@ public class GoalSetActivity extends AppCompatActivity {
     SeekBar timeBar;
     int distance;
     int time;
+    Button confirmButton;
     TextView distancedisplay;
     TextView timedisplay;
-    Goal dailyDistGoal, dailyTimeGoal;
-    Button confirmBut;
+    public Goal distGoal, timeGoal;
+    public DaoSession daoSession;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_goal_set);
         distanceBar = (SeekBar)findViewById(R.id.distseekb);
-        confirmBut = (Button) findViewById(R.id.confirmbutton);
-        distanceBar.setMax(39);
+        confirmButton = (Button) findViewById(R.id.confirmButton);
         timeBar = (SeekBar)findViewById(R.id.timeseekb);
-        timeBar.setMax(57);
         distancedisplay = (TextView)findViewById(R.id.distdisplay);
         timedisplay = (TextView) findViewById(R.id.timedisplay);
-        dailyDistGoal = new Goal();
-        dailyTimeGoal = new Goal();
+        daoSession = ((App) getApplication()).getDaoSession();
         distanceBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 distance = progress;
-                distancedisplay.setText("" + progress);
-
+                distancedisplay.setText("Today's Goal: " + progress + " miles\nYou will earn " + );
             }
 
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
 
             }
-
+5
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
 
@@ -66,7 +65,18 @@ public class GoalSetActivity extends AppCompatActivity {
 
             }
         });
-        confirmBut.setOnClickListener();
+        confirmButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                timeGoal = new Goal();
+                distGoal = new Goal();
+                timeGoal.setDistance(false); timeGoal.setValue(time);
+                distGoal.setDistance(true); distGoal.setValue(distance);
+                daoSession.getGoalDao().insert(timeGoal);
+                daoSession.getGoalDao().insert(distGoal);
+            }
+        });
     }
-    
+
 }
+

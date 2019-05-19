@@ -28,6 +28,7 @@
                 android:layout_weight="1"
                 android:id="@+id/distseekb"
                 android:max="150"
+                android:progress="50"
                 />
         </LinearLayout>
 
@@ -43,12 +44,13 @@
                 android:textSize="30dp"
                 android:gravity="center"
                 android:text="Time Goal"/>
+
             <SeekBar
+                android:id="@+id/timeseekb"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:id="@+id/timeseekb"
-                android:max="150"/>
+                android:max="150" />
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
@@ -59,7 +61,7 @@
                 android:id="@+id/distdisplay"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
+                android:layout_weight="0.5"
                 android:text="Distance Slider"/>
             <TextView
                 android:id="@+id/timedisplay"
@@ -68,13 +70,14 @@
                 android:layout_weight="1"
                 android:text="Time Slider"/>
         </LinearLayout>
-        <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Confirm"
-                
-                android:id="@+id/confirmbutton"
-        />
+
+        </LinearLayout>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Confirm"
+        android:gravity="center_vertical"
+        android:id="@+id/confirmButton"/>
 
 
     </LinearLayout>
