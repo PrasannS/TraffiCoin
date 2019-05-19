@@ -28,11 +28,11 @@ public class App extends Application {
         daoSession = daoMaster.newSession();
         Goal fd = new Goal();
         fd.setDistance(true);
-        fd.setTimestamp((new Date()).getTime());
+        fd.setTimestamp(10);
         fd.setValue(37);
         Goal fs = new Goal();
         fs.setDistance(false);
-        fs.setTimestamp((new Date()).getTime());
+        fs.setTimestamp(10);
         fs.setValue(59);
         daoSession.getGoalDao().insert(fs);
         daoSession.getGoalDao().insert(fd);
