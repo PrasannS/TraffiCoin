@@ -141,7 +141,7 @@ public class LocationTracker
                                     int hr = cal.get(Calendar.HOUR_OF_DAY);
                                     int min = cal.get(Calendar.MINUTE);
                                     test.setText(hr + ":" + min + ": You are at: " + sLat + " , " + sLong);
-                                    if (!cur.equals("Unknown"))
+                                    if (!cur.equals("Unknown") && !cur.equals("Still") && !close(sHour, sMin, hr, min))
                                         addTrip(sLat,sLong,eLat,eLong,sHour,sMin,hr,min, cur, (long) starttime, (new Date()).getTime());
 
                                     Toast.makeText(con, "SHOULDVE RUN", Toast.LENGTH_LONG);
@@ -167,6 +167,17 @@ public class LocationTracker
             prev.add(label);
         }
     }
+
+    public boolean close(int sHr, int sMin, int eHr, int eMin)
+    {
+        if (eHr < sHr)
+            eHr += 24;
+        int fir = sHr * 60 + sMin;
+        int sec = eHr * 60 + eMin;
+        if (sec - fir < 3)
+            return true;
+        return false;
+    }
     public void addTrip(double sLat, double sLong, double eLat, double eLong, int sHr, int sMin, int eHr, int eMin, String type, long st, long en)
     {
         Trip trip = new Trip();
@@ -184,7 +195,7 @@ public class LocationTracker
         trip.setStartmin(sMin);
         trip.setEndhour(eHr);
         trip.setEndmin(eMin);
-        
+
         if(getRouteKey(eLat, eLong,sLat,sLong)==null){
             Route r = new Route();
             r.setEndlat(eLat);
