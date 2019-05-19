@@ -1,12 +1,15 @@
 package cryptonite.android.apps.com.traficoin.Models;
 
 import org.greenrobot.greendao.annotation.Entity;
+import org.greenrobot.greendao.annotation.Id;
 import org.greenrobot.greendao.annotation.Property;
 import org.greenrobot.greendao.annotation.Generated;
 
 @Entity(nameInDb = "location")
 public class Location {
 
+    @Id(autoincrement = true)
+    Long id;
     @Property(nameInDb = "lat")
     double lat;
     @Property(nameInDb = "lng")
@@ -15,8 +18,10 @@ public class Location {
     String name;
     @Property(nameInDb = "locID")
     String locID;
-    @Generated(hash = 897834434)
-    public Location(double lat, double lng, String name, String locID) {
+
+    @Generated(hash = 481405962)
+    public Location(Long id, double lat, double lng, String name, String locID) {
+        this.id = id;
         this.lat = lat;
         this.lng = lng;
         this.name = name;
@@ -48,6 +53,12 @@ public class Location {
     }
     public void setLocID(String locID) {
         this.locID = locID;
+    }
+    public Long getId() {
+        return this.id;
+    }
+    public void setId(Long id) {
+        this.id = id;
     }
 
 }

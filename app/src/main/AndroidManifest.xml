@@ -13,10 +13,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".purchase_history"></activity>
+        <service
+            android:name=".BackgroundService"
+            android:enabled="true"
+            android:exported="true"></service>
+
         <activity
             android:name=".LoginActivity"
             android:screenOrientation="portrait">
+        <activity android:name=".RegistrationActivity"></activity>
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -30,7 +35,7 @@
         <activity android:name=".DashboardActivity" />
         <activity android:name=".StatsActivity" />
         <activity android:name=".shop_company_products" />
-        <activity android:name=".product_purchase" />
+        <activity android:name=".GoalSetActivity" />
     </application>
 
 </manifest>

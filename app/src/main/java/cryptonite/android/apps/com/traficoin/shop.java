@@ -24,6 +24,9 @@ public class shop extends AppCompatActivity {
                 startActivity(openProductList);
             }
         });
+        //testmode
+
+
     }
 
 
