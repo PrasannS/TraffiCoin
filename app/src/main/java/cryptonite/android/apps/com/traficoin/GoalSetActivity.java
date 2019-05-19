@@ -123,6 +123,7 @@ public class GoalSetActivity extends AppCompatActivity {
                     timeGoal.setTimestamp((new Date()).getTime());
                     daoSession.getGoalDao().insert(timeGoal);
                     daoSession.getGoalDao().insert(distGoal);
+                    if(f)
                     cg.getCoins(getLatestGoal(1).getValue(),getLatestGoal(0).getValue(),lt.getRushMinutes());
                 }
                 else
