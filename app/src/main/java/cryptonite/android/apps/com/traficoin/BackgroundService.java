@@ -138,9 +138,54 @@ public class BackgroundService extends Service implements RetrofitClient.Traffic
         return null;
     }
 
-    public ArrayList<Traffic>getRushHours(ArrayList<Traffic>traffics){
-        //TODO Samuel this is your method
-        return null;
+    public ArrayList<Traffic>getRushHours(ArrayList<Traffic>traffics)
+    {
+        int good = 0;
+        double d = 0;
+        for (int i = 0; i < traffics.size(); i++)
+        {
+            if (traffics.get(i).getJf() != -1)
+            {
+                good++;
+                d += traffics.get(i).getJf();
+            }
+            else
+            {
+                traffics.remove(i);
+                i--;
+            }
+        }
+        if (good == 0)
+            return new ArrayList<>();
+        d /= good;
+        int start = -1;
+        boolean cont = false;
+        ArrayList<Traffic> ret = new ArrayList<>();
+        for (int i = 0; i < traffics.size(); i++)
+        {
+            if (traffics.get(i).getJf() > d)
+            {
+                if (!cont)
+                {
+                    cont = true;
+                    start = i;
+                }
+            }
+            else
+            {
+                if (cont && i != start + 1)
+                {
+                    cont = false;
+                    Traffic traf = new Traffic();
+                    traf.setStarthours(traffics.get(start).getStarthours());
+                    traf.setStartmins(traffics.get(start).getStartmins());
+                    traf.setEndhours(traffics.get(i - 1).getEndhours());
+                    traf.setEndmins(traffics.get(i - 1).getEndmins());
+                    ret.add(traf);
+                }
+            }
+        }
+        return ret;
     }
 
     public Route getRouteFromPriority(){

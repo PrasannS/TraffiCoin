@@ -12,16 +12,17 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        android:name=".App">
         <service
             android:name=".BackgroundService"
             android:enabled="true"
             android:exported="true"></service>
 
+        <activity android:name=".RegistrationActivity"></activity>
         <activity
             android:name=".LoginActivity"
             android:screenOrientation="portrait">
-            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -31,10 +32,11 @@
 
         <service android:name=".DetectedActivityIntentService" />
         <service android:name=".ActivityDetectionService" />
-
         <activity android:name=".DashboardActivity" />
         <activity android:name=".StatsActivity" />
         <activity android:name=".shop_company_products" />
+        <activity android:name=".GoalSetActivity" />
+        <activity android:name=".shop"/>
     </application>
 
 </manifest>

@@ -48,7 +48,7 @@ public class productListAdapter extends RecyclerView.Adapter<productListAdapter.
     public void onBindViewHolder(@NonNull productListViewHolder productListViewHolder, int i) {
         companyProduct currentProduct = productList.get(i);
         productListViewHolder.productPicture.setImageResource(currentProduct.getProductPicture());
-        productListViewHolder.productPrice.setText(currentProduct.getProductPrice());
+        productListViewHolder.productPrice.setText(currentProduct.getProductPrice()+"");
         productListViewHolder.productName.setText(currentProduct.getProductName());
     }
 

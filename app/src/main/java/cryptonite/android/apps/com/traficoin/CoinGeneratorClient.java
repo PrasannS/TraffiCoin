@@ -30,7 +30,7 @@ public class CoinGeneratorClient {
 
     public CoinGeneratorClient(Context c){
         context = c;
-        daoSession = ((App)context).getDaoSession();
+          daoSession = ((App)context).getDaoSession();
     }
 
     public void runTransaction(int val){
