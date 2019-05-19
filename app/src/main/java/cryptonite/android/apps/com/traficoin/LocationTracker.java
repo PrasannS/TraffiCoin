@@ -41,6 +41,7 @@ import static android.support.v4.content.PermissionChecker.checkSelfPermission;
 
 public class LocationTracker
 {
+    int countStill = 0;
     public static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
     public static final String TAG = LoginActivity.class.getSimpleName();
     String cur = "Unknown";
@@ -115,28 +116,24 @@ public class LocationTracker
         }
         Log.d(TAG, "broadcast:onReceive(): Activity is " + label
                 + " and confidence level is: " + confidence);
-        if (cur.equals("Unknown") && !label.equals("Unknown"))
+        if (cur.equals("Unknown") && !(label.equals("Unknown") || label.equals("Still")))
             cur = label;
-        if (!prev.contains(cur) && prev.size() >= 10)
+        if (!prev.contains(cur) && prev.size() >= 10 || (label.equals("Still") && countStill==14))
         {
-            if (con != null && checkSelfPermission(con, ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED)
+            if (checkSelfPermission(con, ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED)
             {
                 fusedLocationClient.getLastLocation()
                         .addOnSuccessListener(new OnSuccessListener<Location>() {
                             @Override
                             public void onSuccess(Location location) {
                                 // GPS location can be null if GPS is switched off
-                                Toast.makeText(con, "SUCCESS", Toast.LENGTH_LONG);
                                 if (location != null) {
-                                    Toast.makeText(con, "NOT NULL", Toast.LENGTH_LONG);
                                     double eLong = location.getLongitude();
                                     double eLat = location.getLatitude();
                                     int hr = cal.get(Calendar.HOUR_OF_DAY);
                                     int min = cal.get(Calendar.MINUTE);
                                     if (!cur.equals("Unknown") && !cur.equals("Still") && !close(sHour, sMin, hr, min))
                                         addTrip(sLat,sLong,eLat,eLong,sHour,sMin,hr,min, cur, (long) starttime, (new Date()).getTime());
-
-                                    Toast.makeText(con, "SHOULDVE RUN", Toast.LENGTH_LONG);
 
                                     sLong = location.getLongitude();
                                     sLat = location.getLatitude();
@@ -152,6 +149,9 @@ public class LocationTracker
                 cur = label;
             }
         }
+        else if (label.equals("Still"))
+          countStill++;
+        else if (label.equals("Unknown"));
         else
         {
             if (prev.size() == 10)
@@ -177,7 +177,7 @@ public class LocationTracker
         trip.setEndlat(eLat);
         trip.setStartlng(sLong);
         trip.setEndlng(eLong);
-        if(!type.equals("on_bicycle")){
+        if(!type.equals("On_Bicycle")){
             trip.setType(1);
         }
         else trip.setType(4);
