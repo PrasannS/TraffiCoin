@@ -53,7 +53,7 @@ public class DashboardActivity extends AppCompatActivity {
                         startActivity(in);
                         break;
                     case R.id.profile:
-                        Intent inte = new Intent(getApplicationContext(), profile.class);
+                        Intent inte = new Intent(getApplicationContext(), TripHistoryActivity.class);
                         startActivity(inte);
                         break;
                 }

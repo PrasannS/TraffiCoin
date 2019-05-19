@@ -36,7 +36,7 @@ public class GoalSetActivity extends AppCompatActivity {
             public void onStartTrackingTouch(SeekBar seekBar) {
 
             }
-5
+
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
 
