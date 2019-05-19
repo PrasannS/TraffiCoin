@@ -19,6 +19,9 @@ public class StatsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_stats);
         LineChart distanceChart = (LineChart) findViewById(R.id.distanceChart);
+        LineChart timeChart = (LineChart) findViewById(R.id.timeChart);
+        LineChart coinChart = (LineChart) findViewById(R.id.coinsChart);
+        LineChart nonDrivingChart = (LineChart) findViewById(R.id.nonDrivingTimeChart);
 
         ViewPager viewPager = findViewById(R.id.viewPager);
         viewPager.setOffscreenPageLimit(1);
