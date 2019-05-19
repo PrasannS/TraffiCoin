@@ -38,6 +38,9 @@ import cryptonite.android.apps.com.traficoin.Models.Trip;
 import cryptonite.android.apps.com.traficoin.Models.TripDao;
 import cryptonite.android.apps.com.traficoin.TrafficSDK.TrafficDataI;
 
+import static android.Manifest.permission.ACCESS_FINE_LOCATION;
+import static android.support.v4.content.PermissionChecker.checkSelfPermission;
+
 public class LocationTracker
 {
     public static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
@@ -118,17 +121,8 @@ public class LocationTracker
             cur = label;
         if (!prev.contains(cur) && prev.size() >= 10)
         {
-            if (ContextCompat.checkSelfPermission(con,
-                    Manifest.permission.ACCESS_FINE_LOCATION)
-                    != PackageManager.PERMISSION_GRANTED)
+            if (con != null && checkSelfPermission(con, ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED)
             {
-                ActivityCompat.requestPermissions((Activity) con,
-                        new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
-                        MY_PERMISSIONS_REQUEST_LOCATION);
-            }
-            else
-            {
-                Toast.makeText(con, "prev doesnt have label and permissions good", Toast.LENGTH_LONG);
                 fusedLocationClient.getLastLocation()
                         .addOnSuccessListener(new OnSuccessListener<Location>() {
                             @Override
@@ -251,8 +245,16 @@ public class LocationTracker
         int min = 1 << 17;
         for (int i = 0; i < rHrTimes.size(); i++)
         {
-            if (rHrTimes.get(i).getStarthours() < sHr)
-                min = Math.min(min, getTimeDif((int) rHrTimes.get(i).getStarthours(), (int) rHrTimes.get(i).getStartmins(), sHr, sMin));
+            int sRHr = (int) rHrTimes.get(i).getStarthours();
+            int sRMin = (int) rHrTimes.get(i).getStartmins();
+            int eRHr = (int) rHrTimes.get(i).getEndhours();
+            int eRMin = (int) rHrTimes.get(i).getEndmins();
+            if ((sRHr < sHr || sRHr == sHr && sRMin <= sMin))
+            {
+                if (eRHr > eHr || eRHr == eHr && eRMin >= eMin)
+                    return 0;
+                min = Math.min(min, getTimeDif((int) sRHr, (int) sRMin, sHr, sMin));
+            }
             else
                 min = Math.min(min, getTimeDif(sHr, sMin, (int) rHrTimes.get(i).getStarthours(), (int) rHrTimes.get(i).getStartmins()));
         }

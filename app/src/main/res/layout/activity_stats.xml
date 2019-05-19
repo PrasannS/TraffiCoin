@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".StatsActivity">
+    tools:context=".StatsActivity"
+    android:backgroundTint="@color/colorPrimaryDark">
 
     <android.support.v4.view.ViewPager
         android:id="@+id/viewPager"
@@ -28,22 +29,20 @@
                 android:id="@+id/distanceChart"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:background="@color/colorPrimaryDark"/>
             <com.github.mikephil.charting.charts.LineChart
                 android:id="@+id/timeChart"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                android:background="@color/colorPrimaryDark"/>
             <com.github.mikephil.charting.charts.LineChart
                 android:id="@+id/nonDrivingTimeChart"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1"/>
-            <com.github.mikephil.charting.charts.LineChart
-                android:id="@+id/coinsChart"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:background="@color/colorPrimaryDark"/>
 
         </LinearLayout>
 

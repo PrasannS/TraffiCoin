@@ -50,6 +50,7 @@
 
                     <!--Button Icons represents the logo for each companies -->
                     <Button
+android:backgroundTint="@color/colorPrimaryDark"
                         android:id="@+id/starbucks"
                         android:layout_weight="1"
                         android:layout_width="match_parent"
@@ -57,6 +58,7 @@
                         android:text="placeholder"/>
 
                     <Button
+android:backgroundTint="@color/colorPrimaryDark"
                         android:id="@+id/burgerking"
                         android:layout_weight="1"
                         android:layout_width="match_parent"
@@ -64,6 +66,7 @@
                         android:text="placeholder"/>
 
                     <Button
+android:backgroundTint="@color/colorPrimaryDark"
                         android:id="@+id/panera"
                         android:layout_weight="1"
                         android:layout_width="match_parent"
@@ -71,45 +74,13 @@
                         android:text="placeholder"/>
 
                     <Button
+android:backgroundTint="@color/colorPrimaryDark"
                         android:layout_weight="1"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent" />
 
                     <Button
-                        android:layout_weight="1"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
-
-                </LinearLayout>
-                <!-- Small boi linear layout-->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal"
-                    android:background="@color/colorPrimary">
-
-                    <!--Button Icons represents the logo for each companies -->
-                    <Button
-                        android:layout_weight="1"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
-
-                    <Button
-                        android:layout_weight="1"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
-
-                    <Button
-                        android:layout_weight="1"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
-
-                    <Button
-                        android:layout_weight="1"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
-
-                    <Button
+android:backgroundTint="@color/colorPrimaryDark"
                         android:layout_weight="1"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent" />
@@ -124,76 +95,31 @@
 
                     <!--Button Icons represents the logo for each companies -->
                     <Button
+android:backgroundTint="@color/colorPrimaryDark"
                         android:layout_weight="1"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent" />
 
                     <Button
+android:backgroundTint="@color/colorPrimaryDark"
                         android:layout_weight="1"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent" />
 
                     <Button
+android:backgroundTint="@color/colorPrimaryDark"
                         android:layout_weight="1"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent" />
 
                     <Button
+android:backgroundTint="@color/colorPrimaryDark"
                         android:layout_weight="1"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent" />
 
                     <Button
-                        android:layout_weight="1"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
-
-                </LinearLayout>
-            </LinearLayout>
-            <!--Starter of one caategory, companies group -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-
-                <!-- Represents the Categories -->
-                <TextView
-                    android:gravity="center"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="Categories"
-                    android:textColor="@android:color/white"
-                    android:layout_marginBottom="10dp"/>
-
-                <!-- Small boi linear layout-->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal"
-                    android:background="@color/colorPrimary">
-
-                    <!--Button Icons represents the logo for each companies -->
-                    <Button
-                        android:layout_weight="1"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
-
-                    <Button
-                        android:layout_weight="1"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
-
-                    <Button
-                        android:layout_weight="1"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
-
-                    <Button
-                        android:layout_weight="1"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
-
-                    <Button
+android:backgroundTint="@color/colorPrimaryDark"
                         android:layout_weight="1"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent" />
@@ -208,60 +134,31 @@
 
                     <!--Button Icons represents the logo for each companies -->
                     <Button
+android:backgroundTint="@color/colorPrimaryDark"
                         android:layout_weight="1"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent" />
 
                     <Button
+android:backgroundTint="@color/colorPrimaryDark"
                         android:layout_weight="1"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent" />
 
                     <Button
+android:backgroundTint="@color/colorPrimaryDark"
                         android:layout_weight="1"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent" />
 
                     <Button
+android:backgroundTint="@color/colorPrimaryDark"
                         android:layout_weight="1"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent" />
 
                     <Button
-                        android:layout_weight="1"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
-
-                </LinearLayout>
-                <!-- Small boi linear layout-->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal"
-                    android:background="@color/colorPrimary">
-
-                    <!--Button Icons represents the logo for each companies -->
-                    <Button
-                        android:layout_weight="1"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
-
-                    <Button
-                        android:layout_weight="1"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
-
-                    <Button
-                        android:layout_weight="1"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
-
-                    <Button
-                        android:layout_weight="1"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
-
-                    <Button
+android:backgroundTint="@color/colorPrimaryDark"
                         android:layout_weight="1"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent" />
@@ -292,60 +189,31 @@
 
                     <!--Button Icons represents the logo for each companies -->
                     <Button
+android:backgroundTint="@color/colorPrimaryDark"
                         android:layout_weight="1"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent" />
 
                     <Button
+android:backgroundTint="@color/colorPrimaryDark"
                         android:layout_weight="1"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent" />
 
                     <Button
+android:backgroundTint="@color/colorPrimaryDark"
                         android:layout_weight="1"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent" />
 
                     <Button
+android:backgroundTint="@color/colorPrimaryDark"
                         android:layout_weight="1"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent" />
 
                     <Button
-                        android:layout_weight="1"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
-
-                </LinearLayout>
-                <!-- Small boi linear layout-->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal"
-                    android:background="@color/colorPrimary">
-
-                    <!--Button Icons represents the logo for each companies -->
-                    <Button
-                        android:layout_weight="1"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
-
-                    <Button
-                        android:layout_weight="1"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
-
-                    <Button
-                        android:layout_weight="1"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
-
-                    <Button
-                        android:layout_weight="1"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
-
-                    <Button
+android:backgroundTint="@color/colorPrimaryDark"
                         android:layout_weight="1"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent" />
@@ -360,26 +228,70 @@
 
                     <!--Button Icons represents the logo for each companies -->
                     <Button
+android:backgroundTint="@color/colorPrimaryDark"
                         android:layout_weight="1"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent" />
 
                     <Button
+android:backgroundTint="@color/colorPrimaryDark"
                         android:layout_weight="1"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent" />
 
                     <Button
+android:backgroundTint="@color/colorPrimaryDark"
                         android:layout_weight="1"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent" />
 
                     <Button
+android:backgroundTint="@color/colorPrimaryDark"
                         android:layout_weight="1"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent" />
 
                     <Button
+android:backgroundTint="@color/colorPrimaryDark"
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+
+                </LinearLayout>
+                <!-- Small boi linear layout-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:background="@color/colorPrimary">
+
+                    <!--Button Icons represents the logo for each companies -->
+                    <Button
+android:backgroundTint="@color/colorPrimaryDark"
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+
+                    <Button
+android:backgroundTint="@color/colorPrimaryDark"
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+
+                    <Button
+android:backgroundTint="@color/colorPrimaryDark"
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+
+                    <Button
+android:backgroundTint="@color/colorPrimaryDark"
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+
+                    <Button
+android:backgroundTint="@color/colorPrimaryDark"
                         android:layout_weight="1"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent" />
@@ -410,60 +322,31 @@
 
                     <!--Button Icons represents the logo for each companies -->
                     <Button
+android:backgroundTint="@color/colorPrimaryDark"
                         android:layout_weight="1"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent" />
 
                     <Button
+android:backgroundTint="@color/colorPrimaryDark"
                         android:layout_weight="1"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent" />
 
                     <Button
+android:backgroundTint="@color/colorPrimaryDark"
                         android:layout_weight="1"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent" />
 
                     <Button
+android:backgroundTint="@color/colorPrimaryDark"
                         android:layout_weight="1"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent" />
 
                     <Button
-                        android:layout_weight="1"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
-
-                </LinearLayout>
-                <!-- Small boi linear layout-->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal"
-                    android:background="@color/colorPrimary">
-
-                    <!--Button Icons represents the logo for each companies -->
-                    <Button
-                        android:layout_weight="1"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
-
-                    <Button
-                        android:layout_weight="1"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
-
-                    <Button
-                        android:layout_weight="1"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
-
-                    <Button
-                        android:layout_weight="1"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
-
-                    <Button
+android:backgroundTint="@color/colorPrimaryDark"
                         android:layout_weight="1"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent" />
@@ -478,26 +361,203 @@
 
                     <!--Button Icons represents the logo for each companies -->
                     <Button
+android:backgroundTint="@color/colorPrimaryDark"
                         android:layout_weight="1"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent" />
 
                     <Button
+android:backgroundTint="@color/colorPrimaryDark"
                         android:layout_weight="1"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent" />
 
                     <Button
+android:backgroundTint="@color/colorPrimaryDark"
                         android:layout_weight="1"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent" />
 
                     <Button
+android:backgroundTint="@color/colorPrimaryDark"
                         android:layout_weight="1"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent" />
 
                     <Button
+android:backgroundTint="@color/colorPrimaryDark"
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+
+                </LinearLayout>
+                <!-- Small boi linear layout-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:background="@color/colorPrimary">
+
+                    <!--Button Icons represents the logo for each companies -->
+                    <Button
+android:backgroundTint="@color/colorPrimaryDark"
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+
+                    <Button
+android:backgroundTint="@color/colorPrimaryDark"
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+
+                    <Button
+android:backgroundTint="@color/colorPrimaryDark"
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+
+                    <Button
+android:backgroundTint="@color/colorPrimaryDark"
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+
+                    <Button
+android:backgroundTint="@color/colorPrimaryDark"
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+
+                </LinearLayout>
+            </LinearLayout>
+            <!--Starter of one caategory, companies group -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <!-- Represents the Categories -->
+                <TextView
+                    android:gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Categories"
+                    android:textColor="@android:color/white"
+                    android:layout_marginBottom="10dp"/>
+
+                <!-- Small boi linear layout-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:background="@color/colorPrimary">
+
+                    <!--Button Icons represents the logo for each companies -->
+                    <Button
+android:backgroundTint="@color/colorPrimaryDark"
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+
+                    <Button
+android:backgroundTint="@color/colorPrimaryDark"
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+
+                    <Button
+android:backgroundTint="@color/colorPrimaryDark"
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+
+                    <Button
+android:backgroundTint="@color/colorPrimaryDark"
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+
+                    <Button
+android:backgroundTint="@color/colorPrimaryDark"
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+
+                </LinearLayout>
+                <!-- Small boi linear layout-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:background="@color/colorPrimary">
+
+                    <!--Button Icons represents the logo for each companies -->
+                    <Button
+android:backgroundTint="@color/colorPrimaryDark"
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+
+                    <Button
+android:backgroundTint="@color/colorPrimaryDark"
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+
+                    <Button
+android:backgroundTint="@color/colorPrimaryDark"
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+
+                    <Button
+android:backgroundTint="@color/colorPrimaryDark"
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+
+                    <Button
+android:backgroundTint="@color/colorPrimaryDark"
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+
+                </LinearLayout>
+                <!-- Small boi linear layout-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:background="@color/colorPrimary">
+
+                    <!--Button Icons represents the logo for each companies -->
+                    <Button
+android:backgroundTint="@color/colorPrimaryDark"
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+
+                    <Button
+android:backgroundTint="@color/colorPrimaryDark"
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+
+                    <Button
+android:backgroundTint="@color/colorPrimaryDark"
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+
+                    <Button
+android:backgroundTint="@color/colorPrimaryDark"
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+
+                    <Button
+android:backgroundTint="@color/colorPrimaryDark"
                         android:layout_weight="1"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent" />

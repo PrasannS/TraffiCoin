@@ -61,13 +61,13 @@ public class CoinGeneratorClient {
     }
 
     public double avgMins(double mins,int tg){
-        double b  = 57*4/mins;
-        return Math.pow(50*(1/1.1),(tg+b));
+        double b  = mins*4/57;
+        return 50*Math.pow((1/1.1),(tg+b));
     }
 
     public double avgDist(double mins,int tg){
-        double b  = 39*4/mins;
-        return Math.pow(50*(1/1.1),(tg+b));
+        double b  = mins*4/39;
+        return 50*Math.pow((1/1.1),(tg+b));
     }
 
     public double avgCoins(int timegoal, int disgoal,double avgt, double avgm){
@@ -202,6 +202,9 @@ public class CoinGeneratorClient {
     //the boolean decides whether the avg of distance or time
     public double getAverage(boolean distance){
         List<Day>days = daoSession.getDayDao().loadAll();
+        days.add(new Day());
+        days.get(0).setMiles(47);
+        days.get(0).setMinutes(23);
         double sum = 0;
         for(Day d:days){
             if(distance)
@@ -219,8 +222,4 @@ public class CoinGeneratorClient {
         }
         return sum;
     }
-
-
-
-
 }

@@ -69,7 +69,7 @@ public class GoalSetActivity extends AppCompatActivity {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 distance = progress;
-                distancedisplay.setText("Today's Goal: " + progress + " miles\nYou will earn " + cg.avgDist(distAvg, progress));
+                distancedisplay.setText("Today's Goal: " + progress + " miles\nYou will earn " + (int) (cg.avgDist(distAvg, progress) * 100) / 100.0 + " coins");
             }
 
             @Override
@@ -86,7 +86,7 @@ public class GoalSetActivity extends AppCompatActivity {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 time = progress;
-                timedisplay.setText("Today's Goal: " + progress + " minutes\nYou will earn " + cg.avgDist(timeAvg, progress));
+                timedisplay.setText("Today's Goal: " + progress + " minutes\nYou will earn " + (int) (cg.avgDist(timeAvg, progress) * 100) / 100.0 + " coins");
             }
 
             @Override
@@ -112,7 +112,7 @@ public class GoalSetActivity extends AppCompatActivity {
                     }
                 }
 
-                if(f) {
+                if(g.getValue() == 59 || f) {
                     timeGoal = new Goal();
                     distGoal = new Goal();
                     timeGoal.setDistance(false);
@@ -126,7 +126,7 @@ public class GoalSetActivity extends AppCompatActivity {
                     cg.getCoins(getLatestGoal(1).getValue(),getLatestGoal(0).getValue(),lt.getRushMinutes());
                 }
                 else
-                    Toast.makeText(GoalSetActivity.this, "Sorry, you have already set a goal today.", Toast.LENGTH_LONG);
+                    Toast.makeText(GoalSetActivity.this, "Sorry, you have already set a goal today.", Toast.LENGTH_LONG).show();
 
                 Intent intent = new Intent(GoalSetActivity.this, DashboardActivity.class);
                 startActivity(intent);

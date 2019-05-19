@@ -16,6 +16,7 @@ import android.widget.TextView;
 import org.w3c.dom.Text;
 
 import cryptonite.android.apps.com.traficoin.Models.DaoSession;
+import cryptonite.android.apps.com.traficoin.Models.Day;
 import cryptonite.android.apps.com.traficoin.Models.Goal;
 import cryptonite.android.apps.com.traficoin.Models.GoalDao;
 
@@ -24,13 +25,14 @@ public class DashboardActivity extends AppCompatActivity {
     Button distButton;
     LocationTracker lc;
     DaoSession mDaoSession;
+    CoinGeneratorClient c;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
 
         lc = new LocationTracker();
-        CoinGeneratorClient c = new CoinGeneratorClient(getApplication());
+        c = new CoinGeneratorClient(getApplication());
         mDaoSession = ((App)getApplication()).getDaoSession();
         coins = (TextView) findViewById(R.id.coindisplay);
         todaysTime = (TextView) findViewById(R.id.tdtimedisplay);
@@ -38,6 +40,7 @@ public class DashboardActivity extends AppCompatActivity {
         todaysCoins = (TextView) findViewById(R.id.tdcoinsdisplay);
         goalDesc = (TextView) findViewById(R.id.goalDesc);
         distButton = (Button) findViewById(R.id.setDistanceGoalBtn);
+
         distButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -74,12 +77,21 @@ public class DashboardActivity extends AppCompatActivity {
         if(getLatestGoal(0)!=null)
             goalDesc.setText("Current Dist Goal: \n" + getLatestGoal(0).getValue() + " miles" + "\n\nCurrent Time Goal:\n" + getLatestGoal(1).getValue() + "mins");
 
+
     }
     @Override
     protected void onStart() {
         super.onStart();
         startService(new Intent(this, ActivityDetectionService.class));
         lc.start(this);
+    }
+    @Override
+    protected void onResume()
+    {
+        super.onResume();
+        Day today = c.tempDay();
+        todaysTime.setText(String.valueOf((int)today.getMinutes()));
+        todaysDist.setText(String.valueOf((int)today.getMiles()));
     }
     public Goal getLatestGoal(int ind){
         if(mDaoSession.getGoalDao().loadAll().size()==0)
