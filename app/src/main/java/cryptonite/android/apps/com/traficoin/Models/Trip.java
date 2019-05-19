@@ -27,11 +27,21 @@ public class Trip {
     double endlng;
     @Property(nameInDb = "type")
     double type;
+    @Property(nameInDb = "starthour")
+    int starthour;
+    @Property(nameInDb = "startmin")
+    int startmin;
+    @Property(nameInDb = "endhour")
+    int endhour;
+    @Property(nameInDb = "endmin")
+    int endmin;
 
-    @Generated(hash = 628117037)
+
+    @Generated(hash = 1939271730)
     public Trip(Long id, long starttime, long endtime, String routeID,
             boolean checked, double startlat, double startlng, double endlat,
-            double endlng, double type) {
+            double endlng, double type, int starthour, int startmin, int endhour,
+            int endmin) {
         this.id = id;
         this.starttime = starttime;
         this.endtime = endtime;
@@ -42,6 +52,10 @@ public class Trip {
         this.endlat = endlat;
         this.endlng = endlng;
         this.type = type;
+        this.starthour = starthour;
+        this.startmin = startmin;
+        this.endhour = endhour;
+        this.endmin = endmin;
     }
     @Generated(hash = 1047475835)
     public Trip() {
@@ -105,6 +119,30 @@ public class Trip {
     }
     public void setType(double type) {
         this.type = type;
+    }
+    public int getStarthour() {
+        return this.starthour;
+    }
+    public void setStarthour(int starthour) {
+        this.starthour = starthour;
+    }
+    public int getStartmin() {
+        return this.startmin;
+    }
+    public void setStartmin(int startmin) {
+        this.startmin = startmin;
+    }
+    public int getEndhour() {
+        return this.endhour;
+    }
+    public void setEndhour(int endhour) {
+        this.endhour = endhour;
+    }
+    public int getEndmin() {
+        return this.endmin;
+    }
+    public void setEndmin(int endmin) {
+        this.endmin = endmin;
     }
 
 }

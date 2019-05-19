@@ -24,8 +24,11 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
+import java.util.UUID;
 
 import cryptonite.android.apps.com.traficoin.Models.DaoSession;
+import cryptonite.android.apps.com.traficoin.Models.Route;
 import cryptonite.android.apps.com.traficoin.Models.Trip;
 
 public class LocationTracker
@@ -36,8 +39,8 @@ public class LocationTracker
     String cur = "Unknown";
     ArrayList<String> prev = new ArrayList<>();
     double sLat, sLong;
-    long starttime;
-    long endtime;
+    double starttime;
+    double endtime;
     public FusedLocationProviderClient fusedLocationClient;
     int sHour, sMin;
     Context con;
@@ -139,7 +142,7 @@ public class LocationTracker
                                     int min = cal.get(Calendar.MINUTE);
                                     test.setText(hr + ":" + min + ": You are at: " + sLat + " , " + sLong);
                                     if (!cur.equals("Unknown"))
-                                        addTrip(sLat,sLong,eLat,eLong,sHour,sMin,hr,min, cur);
+                                        addTrip(sLat,sLong,eLat,eLong,sHour,sMin,hr,min, cur, (long) starttime, (new Date()).getTime());
 
                                     Toast.makeText(con, "SHOULDVE RUN", Toast.LENGTH_LONG);
 
@@ -164,7 +167,7 @@ public class LocationTracker
             prev.add(label);
         }
     }
-    public void addTrip(double sLat, double sLong, double eLat, double eLong, int sHr, int sMin, int eHr, int eMin, String type)
+    public void addTrip(double sLat, double sLong, double eLat, double eLong, int sHr, int sMin, int eHr, int eMin, String type, long st, long en)
     {
         Trip trip = new Trip();
         trip.setStartlat(sLat);
@@ -175,5 +178,43 @@ public class LocationTracker
             trip.setType(1);
         }
         else trip.setType(4);
+        trip.setStarttime(st);
+        trip.setEndtime(en);
+        trip.setStarthour(sHr);
+        trip.setStartmin(sMin);
+        trip.setEndhour(eHr);
+        trip.setEndmin(eMin);
+        
+        if(getRouteKey(eLat, eLong,sLat,sLong)==null){
+            Route r = new Route();
+            r.setEndlat(eLat);
+            r.setEndlng(eLong);
+            r.setStartlat(sLat);
+            r.setStartlng(sLong);
+            r.setOccurances(1);
+            r.setRouteID(UUID.randomUUID().toString());
+            daoSession.getRouteDao().insert(r);
+            trip.setRouteID(r.getRouteID());
+        }
+        else
+            trip.setRouteID(getRouteKey(eLat, eLong,sLat,sLong));
+
+        daoSession.getTripDao().insert(trip);
+
+
+    }
+
+    public String getRouteKey(double elat, double elng,double slat, double slng){
+        List<Route> routes = daoSession.getRouteDao().loadAll();
+        for(Route r: routes){
+            double a = r.getEndlat()-elat;
+            double c = r.getStartlat()-slat;
+            double b = r.getStartlng()-slng;
+            double d = r.getEndlng()-elng;
+            if(CoinGeneratorClient.getDistanceKm(c,a,b,d)<.3){
+                return r.getRouteID();
+            }
+        }
+        return null;
     }
 }
