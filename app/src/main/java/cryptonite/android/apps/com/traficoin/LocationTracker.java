@@ -229,8 +229,16 @@ public class LocationTracker
         int min = 1 << 17;
         for (int i = 0; i < rHrTimes.size(); i++)
         {
-            if (rHrTimes.get(i).getStarthours() < sHr)
-                min = Math.min(min, getTimeDif((int) rHrTimes.get(i).getStarthours(), (int) rHrTimes.get(i).getStartmins(), sHr, sMin));
+            int sRHr = (int) rHrTimes.get(i).getStarthours();
+            int sRMin = (int) rHrTimes.get(i).getStartmins();
+            int eRHr = (int) rHrTimes.get(i).getEndhours();
+            int eRMin = (int) rHrTimes.get(i).getEndmins();
+            if ((sRHr < sHr || sRHr == sHr && sRMin <= sMin))
+            {
+                if (eRHr > eHr || eRHr == eHr && eRMin >= eMin)
+                    return 0;
+                min = Math.min(min, getTimeDif((int) sRHr, (int) sRMin, sHr, sMin));
+            }
             else
                 min = Math.min(min, getTimeDif(sHr, sMin, (int) rHrTimes.get(i).getStarthours(), (int) rHrTimes.get(i).getStartmins()));
         }

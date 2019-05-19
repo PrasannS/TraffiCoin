@@ -74,6 +74,7 @@ public class DashboardActivity extends AppCompatActivity {
         if(getLatestGoal(0)!=null)
             goalDesc.setText("Current Dist Goal: \n" + getLatestGoal(0).getValue() + " miles" + "\n\nCurrent Time Goal:\n" + getLatestGoal(1).getValue() + "mins");
 
+
     }
     @Override
     protected void onStart() {
