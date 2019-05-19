@@ -1,11 +1,14 @@
 package cryptonite.android.apps.com.traficoin.Models;
 
 import org.greenrobot.greendao.annotation.Entity;
+import org.greenrobot.greendao.annotation.Id;
 import org.greenrobot.greendao.annotation.Property;
 import org.greenrobot.greendao.annotation.Generated;
 
 @Entity(nameInDb = "route")
 public class Route {
+    @Id(autoincrement = true)
+    Long id;
 
     @Property(nameInDb = "occurances")
     int occurances;
@@ -23,9 +26,13 @@ public class Route {
     String routeID;
     @Property(nameInDb = "routeCode")
     String routeCode;
-    @Generated(hash = 668539427)
-    public Route(int occurances, double startlat, double startlng, double endlat,
-            double endlng, String name, String routeID, String routeCode) {
+    @Property(nameInDb = "pending")
+    boolean pending;
+    @Generated(hash = 614510713)
+    public Route(Long id, int occurances, double startlat, double startlng,
+            double endlat, double endlng, String name, String routeID,
+            String routeCode, boolean pending) {
+        this.id = id;
         this.occurances = occurances;
         this.startlat = startlat;
         this.startlng = startlng;
@@ -34,6 +41,7 @@ public class Route {
         this.name = name;
         this.routeID = routeID;
         this.routeCode = routeCode;
+        this.pending = pending;
     }
     @Generated(hash = 467763370)
     public Route() {
@@ -85,6 +93,18 @@ public class Route {
     }
     public void setRouteCode(String routeCode) {
         this.routeCode = routeCode;
+    }
+    public Long getId() {
+        return this.id;
+    }
+    public void setId(Long id) {
+        this.id = id;
+    }
+    public boolean getPending() {
+        return this.pending;
+    }
+    public void setPending(boolean pending) {
+        this.pending = pending;
     }
 
 
