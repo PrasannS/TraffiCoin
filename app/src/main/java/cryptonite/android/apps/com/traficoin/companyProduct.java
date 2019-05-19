@@ -1,10 +1,12 @@
+package cryptonite.android.apps.com.traficoin;
+
 public class companyProduct {
 
     private int productPicture;
-    private String productPrice;
+    private int productPrice;
     private String productName;
 
-    public companyProduct(int productPicture, String productName, String productPrice) {
+    public companyProduct(int productPicture, String productName, int productPrice) {
         this.productPicture = productPicture;
         this.productName = productName;
         this.productPrice = productPrice;
@@ -14,7 +16,7 @@ public class companyProduct {
         return productPicture;
     }
 
-    public String getProductPrice(){
+    public int getProductPrice(){
         return productPrice;
     }
 
