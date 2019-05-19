@@ -27,8 +27,7 @@ public class profile extends AppCompatActivity {
 
         averageTime = (TextView)findViewById(R.id.averageTime);
         CoinGeneratorClient cg = new CoinGeneratorClient(getApplication());
-        averageMile.setText("avg/m"+cg.getAverage(true));
-        averageTime.setText("avg/t"+cg.getAverage(false));
+
         averageMile = (TextView)findViewById(R.id.averageMile);
         toPurchaseHistory = (Button)findViewById(R.id.purchaseHistory);
         toPurchaseHistory.setOnClickListener(new View.OnClickListener() {
@@ -47,6 +46,8 @@ public class profile extends AppCompatActivity {
                 startActivity(openTripHistory);
             }
         });
+        averageMile.setText("avg/m"+cg.getAverage(true));
+        averageTime.setText("avg/t"+cg.getAverage(false));
 
     }
 }
