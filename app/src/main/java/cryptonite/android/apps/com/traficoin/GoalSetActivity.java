@@ -2,9 +2,13 @@ package cryptonite.android.apps.com.traficoin;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.SeekBar;
 import android.widget.TextView;
+
+import cryptonite.android.apps.com.traficoin.Models.DaoSession;
+import cryptonite.android.apps.com.traficoin.Models.Goal;
 
 public class GoalSetActivity extends AppCompatActivity {
 
@@ -15,7 +19,8 @@ public class GoalSetActivity extends AppCompatActivity {
     Button confirmButton;
     TextView distancedisplay;
     TextView timedisplay;
-
+    public Goal distGoal, timeGoal;
+    public DaoSession daoSession;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,6 +30,7 @@ public class GoalSetActivity extends AppCompatActivity {
         timeBar = (SeekBar)findViewById(R.id.timeseekb);
         distancedisplay = (TextView)findViewById(R.id.distdisplay);
         timedisplay = (TextView) findViewById(R.id.timedisplay);
+        daoSession = ((App) getApplication()).getDaoSession();
         distanceBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
@@ -59,5 +65,17 @@ public class GoalSetActivity extends AppCompatActivity {
 
             }
         });
+        confirmButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                timeGoal = new Goal();
+                distGoal = new Goal();
+                timeGoal.setDistance(false); timeGoal.setValue(time);
+                distGoal.setDistance(true); distGoal.setValue(distance);
+
+            }
+        });
     }
+
 }
+
