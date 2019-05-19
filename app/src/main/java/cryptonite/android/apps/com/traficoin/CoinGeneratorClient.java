@@ -49,7 +49,7 @@ public class CoinGeneratorClient {
             days.add(getNewDay(temp));
         }
         for(Day d: days){
-            double sum = avgCoins(timegoal, disgoal, d.getMiles(), d.getMinutes())+bikeCoins((int)d.getBminutes());
+            double sum = avgCoins(timegoal, disgoal, d.getMiles(), d.getMinutes())+bikeCoins((int)d.getBminutes())+rushCoins(rd);
             runTransaction((int)sum);
         }
 

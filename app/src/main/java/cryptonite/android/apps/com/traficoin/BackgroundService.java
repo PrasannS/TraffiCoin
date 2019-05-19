@@ -182,6 +182,7 @@ public class BackgroundService extends Service implements RetrofitClient.Traffic
                     traf.setEndhours(traffics.get(i - 1).getEndhours());
                     traf.setEndmins(traffics.get(i - 1).getEndmins());
                     traf.setRushour(true);
+                    traf.setRouteID(traffics.get(0).getRouteID());
                     ret.add(traf);
                 }
             }

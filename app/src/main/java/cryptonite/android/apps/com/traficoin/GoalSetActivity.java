@@ -61,6 +61,8 @@ public class GoalSetActivity extends AppCompatActivity {
         timedisplay = (TextView) findViewById(R.id.timedisplay);
         daoSession = ((App) getApplication()).getDaoSession();
         final double distAvg = cg.getAverage(true), timeAvg = cg.getAverage(false);
+        //TODO This is where the minutes from rush hour will go
+        cg.getCoins(getLatestGoal(1).getValue(),getLatestGoal(0).getValue(),10);
         distanceBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
