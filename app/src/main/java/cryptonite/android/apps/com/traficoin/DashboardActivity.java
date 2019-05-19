@@ -13,12 +13,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 import cryptonite.android.apps.com.traficoin.Models.DaoSession;
 import cryptonite.android.apps.com.traficoin.Models.Goal;
 import cryptonite.android.apps.com.traficoin.Models.GoalDao;
 
 public class DashboardActivity extends AppCompatActivity {
-    TextView coins, goalDesc;
+    TextView coins, goalDesc, todaysTime, todaysDist, todaysCoins;
     Button distButton;
     LocationTracker lc;
     DaoSession mDaoSession;
@@ -31,6 +33,9 @@ public class DashboardActivity extends AppCompatActivity {
         CoinGeneratorClient c = new CoinGeneratorClient(getApplication());
         mDaoSession = ((App)getApplication()).getDaoSession();
         coins = (TextView) findViewById(R.id.coindisplay);
+        todaysTime = (TextView) findViewById(R.id.tdtimedisplay);
+        todaysDist = (TextView) findViewById(R.id.tddistdisplay);
+        todaysCoins = (TextView) findViewById(R.id.tdcoinsdisplay);
         goalDesc = (TextView) findViewById(R.id.goalDesc);
         distButton = (Button) findViewById(R.id.setDistanceGoalBtn);
         distButton.setOnClickListener(new View.OnClickListener() {
@@ -66,7 +71,8 @@ public class DashboardActivity extends AppCompatActivity {
                 return true;
             }
         });
-        goalDesc.setText("Current Dist Goal: \n" + getLatestGoal(0).getValue() + " miles" + "\n\nCurrent Time Goal:\n" + getLatestGoal(1).getValue() + "mins");
+        if(getLatestGoal(0)!=null)
+            goalDesc.setText("Current Dist Goal: \n" + getLatestGoal(0).getValue() + " miles" + "\n\nCurrent Time Goal:\n" + getLatestGoal(1).getValue() + "mins");
 
     }
     @Override

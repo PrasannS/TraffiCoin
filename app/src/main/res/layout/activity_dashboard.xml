@@ -66,8 +66,10 @@
                     android:text="Today's Time" />
 
                 <TextView
+
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:id="@+id/tdtimedisplay"
                     android:layout_weight="1"
                     android:textSize="16sp"
                     android:gravity="center_horizontal"
@@ -94,6 +96,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center_horizontal"
+                    android:id="@+id/tddistdisplay"
                     android:textSize="16sp"
                     android:text="0" />
             </LinearLayout>
@@ -119,7 +122,8 @@
                     android:layout_weight="1"
                     android:gravity="center_horizontal"
                     android:textSize="16sp"
-                    android:text="0" />
+                    android:text="0"
+                    android:id="@+id/tdcoinsdisplay"/>
             </LinearLayout>
         </LinearLayout>
 
