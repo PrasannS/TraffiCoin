@@ -15,13 +15,15 @@ import android.widget.TextView;
 
 import org.w3c.dom.Text;
 
+import java.util.Date;
+
 import cryptonite.android.apps.com.traficoin.Models.DaoSession;
 import cryptonite.android.apps.com.traficoin.Models.Day;
 import cryptonite.android.apps.com.traficoin.Models.Goal;
 import cryptonite.android.apps.com.traficoin.Models.GoalDao;
 
 public class DashboardActivity extends AppCompatActivity {
-    TextView coins, goalDesc, todaysTime, todaysDist, todaysCoins;
+    TextView coins, goalDesc, todaysTime, todaysDist;
     Button distButton;
     LocationTracker lc;
     DaoSession mDaoSession;
@@ -31,13 +33,12 @@ public class DashboardActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
 
-        lc = new LocationTracker();
+        lc = new LocationTracker(getApplicationContext(),getApplicationContext());
         c = new CoinGeneratorClient(getApplication());
         mDaoSession = ((App)getApplication()).getDaoSession();
         coins = (TextView) findViewById(R.id.coindisplay);
         todaysTime = (TextView) findViewById(R.id.tdtimedisplay);
         todaysDist = (TextView) findViewById(R.id.tddistdisplay);
-        todaysCoins = (TextView) findViewById(R.id.tdcoinsdisplay);
         goalDesc = (TextView) findViewById(R.id.goalDesc);
         distButton = (Button) findViewById(R.id.setDistanceGoalBtn);
 
@@ -48,6 +49,8 @@ public class DashboardActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
+        long starttime = (new Date()).getTime();
+        lc.setText(todaysTime,todaysDist,c);
         coins.setText(String.valueOf((int) c.getCoinBalance()));
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomBar);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -75,8 +78,9 @@ public class DashboardActivity extends AppCompatActivity {
             }
         });
         if(getLatestGoal(0)!=null)
-            goalDesc.setText("Current Dist Goal: \n" + getLatestGoal(0).getValue() + " miles" + "\n\nCurrent Time Goal:\n" + getLatestGoal(1).getValue() + "mins");
-
+            goalDesc.setText("Distance Goal: \n" + getLatestGoal(0).getValue() + " miles" + "\n\n\nTime Goal: " + getLatestGoal(1).getValue() + " mins");
+        lc.addTrip(60.16571,45.9479,60.12235, 41.52351, 10,2,16,12,"In_Vehicle",starttime, (new Date()).getTime());
+        lc.update();
 
     }
     @Override
@@ -84,14 +88,6 @@ public class DashboardActivity extends AppCompatActivity {
         super.onStart();
         startService(new Intent(this, ActivityDetectionService.class));
         lc.start(this);
-    }
-    @Override
-    protected void onResume()
-    {
-        super.onResume();
-        Day today = c.tempDay();
-        todaysTime.setText(String.valueOf((int)today.getMinutes()));
-        todaysDist.setText(String.valueOf((int)today.getMiles()));
     }
     public Goal getLatestGoal(int ind){
         if(mDaoSession.getGoalDao().loadAll().size()==0)

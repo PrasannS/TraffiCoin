@@ -22,6 +22,7 @@ import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnSuccessListener;
 
 import org.greenrobot.greendao.query.QueryBuilder;
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -30,6 +31,7 @@ import java.util.List;
 import java.util.UUID;
 
 import cryptonite.android.apps.com.traficoin.Models.DaoSession;
+import cryptonite.android.apps.com.traficoin.Models.Day;
 import cryptonite.android.apps.com.traficoin.Models.Route;
 import cryptonite.android.apps.com.traficoin.Models.RouteDao;
 import cryptonite.android.apps.com.traficoin.Models.Traffic;
@@ -51,6 +53,8 @@ public class LocationTracker
     double sLat, sLong;
     double starttime;
     double endtime;
+    TextView time, dist;
+    CoinGeneratorClient coin;
     public FusedLocationProviderClient fusedLocationClient;
     int sHour, sMin;
     Context con;
@@ -64,6 +68,13 @@ public class LocationTracker
         c=cont;
         daoSession = ((App)cont).getDaoSession();
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(context);
+        starttime = (new Date()).getTime();
+    }
+    void setText(TextView time, TextView dist, CoinGeneratorClient coin)
+    {
+        this.time = time;
+        this.dist = dist;
+        this.coin = coin;
     }
     protected void start(Context context)
     {
@@ -83,7 +94,7 @@ public class LocationTracker
                 int confidence = intent.getIntExtra("confidence", 0);
                 handleUserActivity(type, confidence);
             }
-        }
+            }
     };
     private void handleUserActivity(int type, int confidence) {
         String label = "Unknown";
@@ -116,9 +127,11 @@ public class LocationTracker
                 break;
             }
         }
+        if (!label.equals("Still"))
+            countStill = 0;
         Log.d(TAG, "broadcast:onReceive(): Activity is " + label
                 + " and confidence level is: " + confidence);
-        if (cur.equals("Unknown") && !(label.equals("Unknown") || label.equals("Still")))
+        if ((cur.equals("Unknown") || cur.equals("Still")) && !(label.equals("Unknown") || label.equals("Still")))
             cur = label;
         if (!prev.contains(cur) && prev.size() >= 10 || (label.equals("Still") && countStill==14))
         {
@@ -142,7 +155,7 @@ public class LocationTracker
                                     sHour = cal.get(Calendar.HOUR_OF_DAY);
                                     sMin = cal.get(Calendar.MINUTE);
                                     starttime = (new Date()).getTime();
-
+                                    update();
                                 }
                             }
                         });
@@ -154,8 +167,7 @@ public class LocationTracker
         else if (label.equals("Still"))
           countStill++;
         else if (label.equals("Unknown"));
-        else
-        {
+        else {
             if (prev.size() == 10)
                 prev.remove(0);
             prev.add(label);
@@ -168,7 +180,7 @@ public class LocationTracker
             eHr += 24;
         int fir = sHr * 60 + sMin;
         int sec = eHr * 60 + eMin;
-        if (sec - fir < 3)
+        if (sec - fir < 1)
             return true;
         return false;
     }
@@ -270,5 +282,11 @@ public class LocationTracker
             eHr -= 1;
         }
         return (eHr - sHr) * 60 + eMin - sMin;
+    }
+    void update()
+    {
+        Day today = coin.tempDay();
+        time.setText(String.valueOf((int)today.getMinutes()) + " minutes");
+        dist.setText(String.valueOf((int)today.getMiles()) + " miles");
     }
 }

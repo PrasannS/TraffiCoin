@@ -112,7 +112,7 @@ public class GoalSetActivity extends AppCompatActivity {
                     }
                 }
 
-                if(g.getValue() == 59 || f) {
+                if(f) {
                     timeGoal = new Goal();
                     distGoal = new Goal();
                     timeGoal.setDistance(false);
