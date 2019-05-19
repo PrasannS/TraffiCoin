@@ -83,9 +83,10 @@ public class StatsActivity extends AppCompatActivity {
         for(int i = 0; i < x.size(); i++){
             entries.add(new Entry(x.get(i), y.get(i)));
         }
-        LineDataSet dataSet = new LineDataSet(entries, "Label");
+        LineDataSet dataSet = new LineDataSet(entries, "Line Chart");
         LineData lineData = new LineData(dataSet);
         chart.setData(lineData);
+        chart.setTouchEnabled(false);
         dataSet.setColor(1);
         dataSet.setValueTextColor(1);
         chart.invalidate();
