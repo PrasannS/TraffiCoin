@@ -30,19 +30,19 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@color/colorPrimaryDark"/>
+                android:background="@color/colorPrimary"/>
             <com.github.mikephil.charting.charts.LineChart
                 android:id="@+id/timeChart"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@color/colorPrimaryDark"/>
+                android:background="@color/colorPrimary"/>
             <com.github.mikephil.charting.charts.LineChart
                 android:id="@+id/nonDrivingTimeChart"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@color/colorPrimaryDark"/>
+                android:background="@color/colorPrimary"/>
 
         </LinearLayout>
 

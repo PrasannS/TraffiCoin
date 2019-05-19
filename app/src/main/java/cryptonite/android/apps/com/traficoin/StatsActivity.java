@@ -19,6 +19,11 @@ import cryptonite.android.apps.com.traficoin.Models.DayDao;
 
 public class StatsActivity extends AppCompatActivity {
 
+    ArrayList<Integer> sampleX = new ArrayList<>();
+    ArrayList<Integer> sampleY1 = new ArrayList<>();
+    ArrayList<Integer> sampleY2 = new ArrayList<>();
+    ArrayList<Integer> sampleY3 = new ArrayList<>();
+
     public DaoSession daoSession;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,11 +31,53 @@ public class StatsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_stats);
         daoSession = ((App)getApplication()).getDaoSession();
         LineChart distanceChart = (LineChart) findViewById(R.id.distanceChart);
-        loadChart(distanceChart, genList(2),incList(7));
+        loadChart("distance chart", distanceChart, genList(2),incList(7));
         LineChart timeChart = (LineChart) findViewById(R.id.timeChart);
-        loadChart(timeChart, genList(1),incList(7));
+        loadChart("time chart", timeChart, genList(1),incList(7));
         LineChart nonDrivingChart = (LineChart) findViewById(R.id.nonDrivingTimeChart);
-        loadChart(nonDrivingChart, genList(3),incList(7));
+        loadChart("non driving chart", nonDrivingChart, genList(3),incList(7));
+        for(int i = 1; i < 10; i++){
+            sampleX.add(i);
+        }
+        sampleY1.add(50);
+        sampleY1.add(45);
+        sampleY1.add(47);
+        sampleY1.add(42);
+        sampleY1.add(41);
+        sampleY1.add(37);
+        sampleY1.add(40);
+        sampleY1.add(40);
+        sampleY1.add(36);
+        sampleY1.add(38);
+
+        sampleY2.add(50);
+        sampleY2.add(45);
+        sampleY2.add(47);
+        sampleY2.add(40);
+        sampleY2.add(45);
+        sampleY2.add(42);
+        sampleY2.add(42);
+        sampleY2.add(40);
+        sampleY2.add(36);
+        sampleY2.add(38);
+
+        sampleY3.add(36);
+        sampleY3.add(38);
+        sampleY3.add(43);
+        sampleY3.add(40);
+        sampleY3.add(40);
+        sampleY3.add(43);
+        sampleY3.add(37);
+        sampleY3.add(50);
+        sampleY3.add(45);
+        sampleY3.add(47);
+
+        loadChart("distance chart", distanceChart,sampleX, sampleY1);
+        loadChart("time chart", timeChart,sampleX, sampleY2);
+        loadChart("non driving chart",nonDrivingChart,sampleX, sampleY3);
+
+
+
 
         ViewPager viewPager = findViewById(R.id.viewPager);
         viewPager.setOffscreenPageLimit(1);
@@ -78,17 +125,18 @@ public class StatsActivity extends AppCompatActivity {
     }
 
 
-    private void loadChart(LineChart chart, List<Integer> x, List<Integer> y){
+    private void loadChart(String label, LineChart chart, List<Integer> x, List<Integer> y){
         List<Entry> entries = new ArrayList<>();
         for(int i = 0; i < x.size(); i++){
             entries.add(new Entry(x.get(i), y.get(i)));
         }
-        LineDataSet dataSet = new LineDataSet(entries, "Line Chart");
+        LineDataSet dataSet = new LineDataSet(entries, label);
+        dataSet.setColor(R.color.redchartcolor);
+        dataSet.setValueTextColor(R.color.redchartcolor);
         LineData lineData = new LineData(dataSet);
         chart.setData(lineData);
         chart.setTouchEnabled(false);
-        dataSet.setColor(1);
-        dataSet.setValueTextColor(1);
+
         chart.invalidate();
 
     }
