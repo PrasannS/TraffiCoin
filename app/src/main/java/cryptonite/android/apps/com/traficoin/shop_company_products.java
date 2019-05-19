@@ -10,14 +10,14 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.AdapterView;
 
 import java.util.ArrayList;
 
 public class shop_company_products extends AppCompatActivity{
 
-    private CardView cardview;
     private RecyclerView productRecycler;
-    private RecyclerView.Adapter productListAdapter;
+    private productListAdapter productListAdapter;
     private RecyclerView.LayoutManager productListLayoutManager;
 
     @Override
@@ -62,7 +62,15 @@ public class shop_company_products extends AppCompatActivity{
             }
         });
 
+        }
 
+        public void buildRecyclerView(){
+            productRecycler = findViewById(R.id.productRecycler);
+            productRecycler.setHasFixedSize(true);
+            productListLayoutManager = new LinearLayoutManager(this);
+
+            productRecycler.setLayoutManager(productListLayoutManager);
+            productRecycler.setAdapter(productListAdapter);
 
         }
     }
