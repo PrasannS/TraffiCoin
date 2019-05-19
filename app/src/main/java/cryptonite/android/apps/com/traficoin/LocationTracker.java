@@ -21,6 +21,8 @@ import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnSuccessListener;
 
+import org.greenrobot.greendao.query.QueryBuilder;
+
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -228,15 +230,18 @@ public class LocationTracker
     }
 
     public int getRushMinutes(){
-        int sum;
+        int sum=0;
         List<Route>routes = daoSession.getRouteDao().queryBuilder().where(RouteDao.Properties.Pending.eq(false)).list();
         for(Route r: routes){
             List<Trip>trips = daoSession.getTripDao().queryBuilder().where(TripDao.Properties.RouteID.eq(r.getRouteID())).list();
-            List<Traffic>trafs = daoSession.getTrafficDao().queryBuilder().where(TrafficDao.Properties.RouteID.eq(r.getRouteID())).and(TrafficDao.Properties.Rushour.eq(true)).list();
+            QueryBuilder<Traffic>qb = daoSession.getTrafficDao().queryBuilder();
+            qb.where(TrafficDao.Properties.Rushour.eq(true),TrafficDao.Properties.RouteID.eq(r.getRouteID()));
+            List<Traffic>trafs = qb.list();
             for(Trip t: trips){
-                sum+=getTimeFromRush(t.getStarthour(),t.getStartmin(),t.getEndhour(),t.getEndmin())
+                sum+=getTimeFromRush(t.getStarthour(),t.getStartmin(),t.getEndhour(),t.getEndmin(),(ArrayList)trafs);
             }
         }
+        return sum;
 
     }
 
