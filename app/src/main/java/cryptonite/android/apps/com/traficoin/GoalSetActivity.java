@@ -27,10 +27,14 @@ public class GoalSetActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_goal_set);
         distanceBar = (SeekBar)findViewById(R.id.distseekb);
-        confirmButton = (Button) findViewById(R.id.confirmButton);
+        confirmButton = (Button) findViewById(R.id.confirmBtn);
         timeBar = (SeekBar)findViewById(R.id.timeseekb);
         distancedisplay = (TextView)findViewById(R.id.distdisplay);
-        cg = new CoinGeneratorClient(this);
+
+        distanceBar.setMax(39);
+        timeBar.setMax(57);
+        cg = new CoinGeneratorClient(getApplication());
+
         timedisplay = (TextView) findViewById(R.id.timedisplay);
         daoSession = ((App) getApplication()).getDaoSession();
         final double distAvg = cg.getAverage(true), timeAvg = cg.getAverage(false);
@@ -45,7 +49,7 @@ public class GoalSetActivity extends AppCompatActivity {
             public void onStartTrackingTouch(SeekBar seekBar) {
 
             }
-
+            
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
 

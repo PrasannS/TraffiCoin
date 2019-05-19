@@ -8,6 +8,16 @@ import org.greenrobot.greendao.annotation.Generated;
 @Entity(nameInDb = "traffic")
 public class Traffic {
 
+    @Property(nameInDb = "rushour")
+    boolean rushour;
+    @Property(nameInDb = "startlat")
+    double startlat;
+    @Property(nameInDb = "startlng")
+    double startlng;
+    @Property(nameInDb = "endlat")
+    double endlat;
+    @Property(nameInDb = "endlng")
+    double endlng;
     @Property(nameInDb = "starthours")
     double starthours;
     @Property(nameInDb = "startmins")
@@ -22,9 +32,15 @@ public class Traffic {
     String routeID;
     @Id(autoincrement = true)
     Long Id;
-    @Generated(hash = 1758926885)
-    public Traffic(double starthours, double startmins, double endhours,
+    @Generated(hash = 834821133)
+    public Traffic(boolean rushour, double startlat, double startlng, double endlat,
+            double endlng, double starthours, double startmins, double endhours,
             double endmins, double jf, String routeID, Long Id) {
+        this.rushour = rushour;
+        this.startlat = startlat;
+        this.startlng = startlng;
+        this.endlat = endlat;
+        this.endlng = endlng;
         this.starthours = starthours;
         this.startmins = startmins;
         this.endhours = endhours;
@@ -77,5 +93,35 @@ public class Traffic {
     }
     public void setJf(double jf) {
         this.jf = jf;
+    }
+    public double getStartlat() {
+        return this.startlat;
+    }
+    public void setStartlat(double startlat) {
+        this.startlat = startlat;
+    }
+    public double getStartlng() {
+        return this.startlng;
+    }
+    public void setStartlng(double startlng) {
+        this.startlng = startlng;
+    }
+    public double getEndlat() {
+        return this.endlat;
+    }
+    public void setEndlat(double endlat) {
+        this.endlat = endlat;
+    }
+    public double getEndlng() {
+        return this.endlng;
+    }
+    public void setEndlng(double endlng) {
+        this.endlng = endlng;
+    }
+    public boolean getRushour() {
+        return this.rushour;
+    }
+    public void setRushour(boolean rushour) {
+        this.rushour = rushour;
     }
 }

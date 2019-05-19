@@ -57,6 +57,10 @@ public class DashboardActivity extends AppCompatActivity {
                         Intent inte = new Intent(getApplicationContext(), profile.class);
                         startActivity(inte);
                         break;
+                    case R.id.shop:
+                        Intent inten = new Intent(getApplicationContext(), shop.class);
+                        startActivity(inten);
+                        break;
                 }
                 return true;
             }

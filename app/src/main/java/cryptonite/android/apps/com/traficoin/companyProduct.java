@@ -1,5 +1,6 @@
 package cryptonite.android.apps.com.traficoin;
 
+//companyProduct Object that goes into the list
 public class companyProduct {
 
     private int productPicture;
