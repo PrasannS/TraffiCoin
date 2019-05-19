@@ -29,8 +29,12 @@ import java.util.UUID;
 
 import cryptonite.android.apps.com.traficoin.Models.DaoSession;
 import cryptonite.android.apps.com.traficoin.Models.Route;
+import cryptonite.android.apps.com.traficoin.Models.RouteDao;
 import cryptonite.android.apps.com.traficoin.Models.Traffic;
+import cryptonite.android.apps.com.traficoin.Models.TrafficDao;
 import cryptonite.android.apps.com.traficoin.Models.Trip;
+import cryptonite.android.apps.com.traficoin.Models.TripDao;
+import cryptonite.android.apps.com.traficoin.TrafficSDK.TrafficDataI;
 
 public class LocationTracker
 {
@@ -221,6 +225,19 @@ public class LocationTracker
             }
         }
         return null;
+    }
+
+    public int getRushMinutes(){
+        int sum;
+        List<Route>routes = daoSession.getRouteDao().queryBuilder().where(RouteDao.Properties.Pending.eq(false)).list();
+        for(Route r: routes){
+            List<Trip>trips = daoSession.getTripDao().queryBuilder().where(TripDao.Properties.RouteID.eq(r.getRouteID())).list();
+            List<Traffic>trafs = daoSession.getTrafficDao().queryBuilder().where(TrafficDao.Properties.RouteID.eq(r.getRouteID())).and(TrafficDao.Properties.Rushour.eq(true)).list();
+            for(Trip t: trips){
+                sum+=getTimeFromRush(t.getStarthour(),t.getStartmin(),t.getEndhour(),t.getEndmin())
+            }
+        }
+
     }
 
     public static int getTimeFromRush(int sHr, int sMin, int eHr, int eMin, ArrayList<Traffic> rHrTimes)

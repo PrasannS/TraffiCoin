@@ -78,6 +78,31 @@ public class CoinGeneratorClient {
         return Math.max(0.4*((Math.log(rushDiff))/(Math.log(2))),0);
     }
 
+    //For Samuel
+    public Day tempDay(){
+        int totalm = 0;
+        int totalmiles = 0;
+        int totalbikes = 0;
+        List<Trip>trips = daoSession.getTripDao().queryBuilder().where(TripDao.Properties.Checked.eq(false)).orderAsc(TripDao.Properties.Id).list();
+        boolean start=false;
+        for(Trip cur: trips){
+            if(!start&&cur.getType()!=4){
+                start=true;
+                totalm+= TimeUnit.MILLISECONDS.toMinutes(cur.getEndtime()-cur.getStarttime());
+                totalmiles+= getD(cur.getEndlat(), cur.getStartlat(), cur.getEndlat(), cur.getEndlng());
+                cur.setChecked(true);
+                Route r = getRoutefromID(cur.getRouteID());
+                r.setOccurances(r.getOccurances()+1);
+            }
+        }
+        Day d = new Day();
+        d.setDayID(UUID.randomUUID().toString());
+        d.setMiles(totalmiles);
+        d.setMinutes(totalm);
+        d.setBminutes(totalbikes);
+        return d;
+    }
+
     //type bike = type 4
     public Day getNewDay(String day){
         int totalm = 0;
