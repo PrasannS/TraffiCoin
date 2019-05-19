@@ -1,20 +1,24 @@
 package cryptonite.android.apps.com.traficoin.Models;
 
 import org.greenrobot.greendao.annotation.Entity;
+import org.greenrobot.greendao.annotation.Id;
 import org.greenrobot.greendao.annotation.Property;
 import org.greenrobot.greendao.annotation.Generated;
 
 @Entity(nameInDb = "rating")
 public class Rating {
 
-    @Property(nameInDb = "picurl")
+    @Id(autoincrement = true)
+    Long id;
+    @Property(nameInDb = "companyID")
     String companyID;
-    @Property(nameInDb = "picurl")
+    @Property(nameInDb = "starts")
     double starts;
-    @Property(nameInDb = "picurl")
+    @Property(nameInDb = "commnet")
     String commnet;
-    @Generated(hash = 1825399778)
-    public Rating(String companyID, double starts, String commnet) {
+    @Generated(hash = 557407004)
+    public Rating(Long id, String companyID, double starts, String commnet) {
+        this.id = id;
         this.companyID = companyID;
         this.starts = starts;
         this.commnet = commnet;
@@ -39,6 +43,12 @@ public class Rating {
     }
     public void setCommnet(String commnet) {
         this.commnet = commnet;
+    }
+    public Long getId() {
+        return this.id;
+    }
+    public void setId(Long id) {
+        this.id = id;
     }
 
 }
