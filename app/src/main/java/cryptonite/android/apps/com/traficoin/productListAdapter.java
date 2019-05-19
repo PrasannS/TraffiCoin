@@ -5,15 +5,24 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
-public class productListAdapter extends RecyclerView.Adapter<productListAdapter.productListViewHolder> {
+public class  productListAdapter extends RecyclerView.Adapter<productListAdapter.productListViewHolder> {
     private ArrayList<companyProduct> productList;
+    private onItemClickListener mListener;
 
+    public interface onItemClickListener {
+        void onItemClick(int position);
+    }
+
+    public void setOnItenClickListener (onItemClickListener listener) {
+        mListener = listener;
+    }
 
 
     public class productListViewHolder extends RecyclerView.ViewHolder {
@@ -22,7 +31,7 @@ public class productListAdapter extends RecyclerView.Adapter<productListAdapter.
         public TextView productName;
         public TextView productPrice;
 
-        public productListViewHolder(@NonNull View itemView) {
+        public productListViewHolder(@NonNull View itemView ) {
             super(itemView);
             productPicture = itemView.findViewById(R.id.productPicture);
             productName = itemView.findViewById(R.id.productName);
