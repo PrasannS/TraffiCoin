@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -37,10 +38,10 @@ public class GoalSetActivity extends AppCompatActivity {
         return java_date;
     }
 
-    public Goal getLatestGoal(){
+    public Goal getLatestGoal(int ind){
         if(daoSession.getGoalDao().loadAll().size()==0)
             return null;
-        return daoSession.getGoalDao().queryBuilder().orderDesc(GoalDao.Properties.Timestamp).list().get(0);
+        return daoSession.getGoalDao().queryBuilder().orderDesc(GoalDao.Properties.Timestamp).list().get(ind);
 
     }
 
@@ -49,7 +50,7 @@ public class GoalSetActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_goal_set);
         distanceBar = (SeekBar)findViewById(R.id.distseekb);
-        confirmButton = (Button) findViewById(R.id.confirmBtn);
+        confirmButton = (Button) findViewById(R.id.confirmButton);
         timeBar = (SeekBar)findViewById(R.id.timeseekb);
         distancedisplay = (TextView)findViewById(R.id.distdisplay);
 
@@ -81,7 +82,7 @@ public class GoalSetActivity extends AppCompatActivity {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 time = progress;
-                distancedisplay.setText("Today's Goal: " + progress + " minutes\nYou will earn " + cg.avgDist(timeAvg, progress));
+                timedisplay.setText("Today's Goal: " + progress + " minutes\nYou will earn " + cg.avgDist(timeAvg, progress));
             }
 
             @Override
@@ -100,7 +101,7 @@ public class GoalSetActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 boolean f = true;
-                Goal g = getLatestGoal();
+                Goal g = getLatestGoal(0);
                 if(g!=null){
                     if(getDay((new Date()).getTime()).equals(getDay(g.getTimestamp()))){
                         f = false;
@@ -119,6 +120,8 @@ public class GoalSetActivity extends AppCompatActivity {
                     daoSession.getGoalDao().insert(timeGoal);
                     daoSession.getGoalDao().insert(distGoal);
                 }
+                else
+                    Toast.makeText(getApplicationContext(), "Sorry, you have already set a goal today.", Toast.LENGTH_LONG);
             }
         });
     }
