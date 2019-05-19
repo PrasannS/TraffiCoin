@@ -6,16 +6,17 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.ImageButton;
 
 
 public class shop extends AppCompatActivity {
-    private Button toProductList;
+    private ImageButton toProductList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shop);
-        toProductList = findViewById(R.id.starbucks);
+        toProductList = (ImageButton)findViewById(R.id.starbucks);
         toProductList.setOnClickListener(new View.OnClickListener() {
             //opening up the company_products activity
             @Override
