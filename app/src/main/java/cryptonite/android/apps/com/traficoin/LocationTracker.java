@@ -36,6 +36,9 @@ import cryptonite.android.apps.com.traficoin.Models.Trip;
 import cryptonite.android.apps.com.traficoin.Models.TripDao;
 import cryptonite.android.apps.com.traficoin.TrafficSDK.TrafficDataI;
 
+import static android.Manifest.permission.ACCESS_FINE_LOCATION;
+import static android.support.v4.content.PermissionChecker.checkSelfPermission;
+
 public class LocationTracker
 {
     public static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
@@ -116,17 +119,8 @@ public class LocationTracker
             cur = label;
         if (!prev.contains(cur) && prev.size() >= 10)
         {
-            if (ContextCompat.checkSelfPermission(con,
-                    Manifest.permission.ACCESS_FINE_LOCATION)
-                    != PackageManager.PERMISSION_GRANTED)
+            if (con != null && checkSelfPermission(con, ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED)
             {
-                ActivityCompat.requestPermissions((Activity) con,
-                        new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
-                        MY_PERMISSIONS_REQUEST_LOCATION);
-            }
-            else
-            {
-                Toast.makeText(con, "prev doesnt have label and permissions good", Toast.LENGTH_LONG);
                 fusedLocationClient.getLastLocation()
                         .addOnSuccessListener(new OnSuccessListener<Location>() {
                             @Override
@@ -226,19 +220,19 @@ public class LocationTracker
         }
         return null;
     }
-
-    public int getRushMinutes(){
-        int sum;
-        List<Route>routes = daoSession.getRouteDao().queryBuilder().where(RouteDao.Properties.Pending.eq(false)).list();
-        for(Route r: routes){
-            List<Trip>trips = daoSession.getTripDao().queryBuilder().where(TripDao.Properties.RouteID.eq(r.getRouteID())).list();
-            List<Traffic>trafs = daoSession.getTrafficDao().queryBuilder().where(TrafficDao.Properties.RouteID.eq(r.getRouteID())).and(TrafficDao.Properties.Rushour.eq(true)).list();
-            for(Trip t: trips){
-                sum+=getTimeFromRush(t.getStarthour(),t.getStartmin(),t.getEndhour(),t.getEndmin())
-            }
-        }
-
-    }
+//
+//    public int getRushMinutes(){
+//        int sum;
+//        List<Route>routes = daoSession.getRouteDao().queryBuilder().where(RouteDao.Properties.Pending.eq(false)).list();
+//        for(Route r: routes){
+//            List<Trip>trips = daoSession.getTripDao().queryBuilder().where(TripDao.Properties.RouteID.eq(r.getRouteID())).list();
+//            List<Traffic>trafs = daoSession.getTrafficDao().queryBuilder().where(TrafficDao.Properties.RouteID.eq(r.getRouteID())).and(TrafficDao.Properties.Rushour.eq(true)).list();
+//            for(Trip t: trips){
+//                sum+=getTimeFromRush(t.getStarthour(),t.getStartmin(),t.getEndhour(),t.getEndmin());
+//            }
+//        }
+//
+//    }
 
     public static int getTimeFromRush(int sHr, int sMin, int eHr, int eMin, ArrayList<Traffic> rHrTimes)
     {
