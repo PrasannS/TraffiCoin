@@ -86,14 +86,12 @@ public class CoinGeneratorClient {
         List<Trip>trips = daoSession.getTripDao().queryBuilder().where(TripDao.Properties.Checked.eq(false)).orderAsc(TripDao.Properties.Id).list();
         boolean start=false;
         for(Trip cur: trips){
-            if(!start&&cur.getType()!=4){
                 start=true;
                 totalm+= TimeUnit.MILLISECONDS.toMinutes(cur.getEndtime()-cur.getStarttime());
                 totalmiles+= getD(cur.getEndlat(), cur.getStartlat(), cur.getEndlat(), cur.getEndlng());
                 cur.setChecked(true);
                 Route r = getRoutefromID(cur.getRouteID());
                 r.setOccurances(r.getOccurances()+1);
-            }
         }
         Day d = new Day();
         d.setDayID(UUID.randomUUID().toString());
