@@ -27,6 +27,11 @@ public class StatsActivity extends AppCompatActivity {
         daoSession = ((App)getApplication()).getDaoSession();
         LineChart distanceChart = (LineChart) findViewById(R.id.distanceChart);
         loadChart(distanceChart, genList(2),incList(7));
+        LineChart timeChart = (LineChart) findViewById(R.id.timeChart);
+        loadChart(timeChart, genList(1),incList(7));
+        LineChart nonDrivingChart = (LineChart) findViewById(R.id.nonDrivingTimeChart);
+        loadChart(nonDrivingChart, genList(3),incList(7));
+
         ViewPager viewPager = findViewById(R.id.viewPager);
         viewPager.setOffscreenPageLimit(1);
         SwipeAdapter swipeAdapter = new SwipeAdapter(getSupportFragmentManager());
