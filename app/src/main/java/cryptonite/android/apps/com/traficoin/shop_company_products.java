@@ -20,16 +20,16 @@ public class shop_company_products extends AppCompatActivity{
         setContentView(R.layout.activity_shop_company_products);
 
         ArrayList<companyProduct> productList = new ArrayList<>();
-        productList.add(new companyProduct(R.drawable.starbucks_example, "Javachip Frappu", 6900));
-        productList.add(new companyProduct(R.drawable.starbucks_example, "Javachip Frappu", 6900));
-        productList.add(new companyProduct(R.drawable.starbucks_example, "Javachip Frappu", 6900));
-        productList.add(new companyProduct(R.drawable.starbucks_example, "Javachip Frappu", 6900));
-        productList.add(new companyProduct(R.drawable.starbucks_example, "Javachip Frappu", 6900));
-        productList.add(new companyProduct(R.drawable.starbucks_example, "Javachip Frappu", 6900));
-        productList.add(new companyProduct(R.drawable.starbucks_example, "Javachip Frappu", 6900));
-        productList.add(new companyProduct(R.drawable.starbucks_example, "Javachip Frappu", 6900));
-        productList.add(new companyProduct(R.drawable.starbucks_example, "Javachip Frappu", 6900));
-        productList.add(new companyProduct(R.drawable.starbucks_example, "Javachip Frappu", 6900));
+        productList.add(new companyProduct(R.drawable.starbucks_example, "Javachip Frappuccino", 6900));
+        productList.add(new companyProduct(R.drawable.starbucks_example, "Javachip Frappuccino", 6900));
+        productList.add(new companyProduct(R.drawable.starbucks_example, "Javachip Frappuccino", 6900));
+        productList.add(new companyProduct(R.drawable.starbucks_example, "Javachip Frappuccino", 6900));
+        productList.add(new companyProduct(R.drawable.starbucks_example, "Javachip Frappuccino", 6900));
+        productList.add(new companyProduct(R.drawable.starbucks_example, "Javachip Frappuccino", 6900));
+        productList.add(new companyProduct(R.drawable.starbucks_example, "Javachip Frappuccino", 6900));
+        productList.add(new companyProduct(R.drawable.starbucks_example, "Javachip Frappuccino", 6900));
+        productList.add(new companyProduct(R.drawable.starbucks_example, "Javachip Frappuccino", 6900));
+        productList.add(new companyProduct(R.drawable.starbucks_example, "Javachip Frappuccino", 6900));
 
         productRecycler = findViewById(R.id.productRecycler);
         productRecycler.setHasFixedSize(true);
