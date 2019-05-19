@@ -10,6 +10,10 @@ public class LoginActivity extends AppCompatActivity {
 
     Button signIn;
 
+
+
+    Button register;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,6 +24,14 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i = new Intent(getApplicationContext(), DashboardActivity.class);
                 startActivity(i);
+            }
+        });
+        register = (Button) findViewById(R.id.toRegister);
+        register.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent in = new Intent(getApplicationContext(), RegistrationActivity.class);
+                startActivity(in);
             }
         });
     }

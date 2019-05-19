@@ -26,11 +26,11 @@
 
         <service android:name=".DetectedActivityIntentService" />
         <service android:name=".ActivityDetectionService" />
-
         <activity android:name=".DashboardActivity" />
         <activity android:name=".StatsActivity" />
         <activity android:name=".shop_company_products" />
         <activity android:name=".GoalSetActivity" />
+        <activity android:name=".shop"/>
     </application>
 
 </manifest>

@@ -21,6 +21,7 @@ public class GoalSetActivity extends AppCompatActivity {
     TextView timedisplay;
     public Goal distGoal, timeGoal;
     public DaoSession daoSession;
+    CoinGeneratorClient cg;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,6 +30,11 @@ public class GoalSetActivity extends AppCompatActivity {
         confirmButton = (Button) findViewById(R.id.confirmButton);
         timeBar = (SeekBar)findViewById(R.id.timeseekb);
         distancedisplay = (TextView)findViewById(R.id.distdisplay);
+
+        distanceBar.setMax(39);
+        timeBar.setMax(57);
+        cg = new CoinGeneratorClient(getApplication());
+
         timedisplay = (TextView) findViewById(R.id.timedisplay);
         daoSession = ((App) getApplication()).getDaoSession();
         distanceBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
@@ -42,7 +48,7 @@ public class GoalSetActivity extends AppCompatActivity {
             public void onStartTrackingTouch(SeekBar seekBar) {
 
             }
-5
+
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
 
@@ -52,7 +58,11 @@ public class GoalSetActivity extends AppCompatActivity {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 time = progress;
+
                 timedisplay.setText("" + progress);
+
+                timedisplay.setText("Today's Goal: " + progress + " minutes\nYou will earn " + cg.avgDist(timeAvg, progress));
+
             }
 
             @Override
