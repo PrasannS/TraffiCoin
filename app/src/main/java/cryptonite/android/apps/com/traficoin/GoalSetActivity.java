@@ -7,8 +7,13 @@ import android.widget.Button;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.TimeZone;
+
 import cryptonite.android.apps.com.traficoin.Models.DaoSession;
 import cryptonite.android.apps.com.traficoin.Models.Goal;
+import cryptonite.android.apps.com.traficoin.Models.GoalDao;
 
 public class GoalSetActivity extends AppCompatActivity {
 
@@ -22,6 +27,23 @@ public class GoalSetActivity extends AppCompatActivity {
     public Goal distGoal, timeGoal;
     public DaoSession daoSession;
     private CoinGeneratorClient cg;
+
+    public String getDay(long ts){
+        Date date = new Date(ts);
+        // format of the date
+        SimpleDateFormat jdf = new SimpleDateFormat("yyyy-MM-dd");
+        jdf.setTimeZone(TimeZone.getTimeZone("GMT-4"));
+        String java_date = jdf.format(date);
+        return java_date;
+    }
+
+    public Goal getLatestGoal(){
+        if(daoSession.getGoalDao().loadAll().size()==0)
+            return null;
+        return daoSession.getGoalDao().queryBuilder().orderDesc(GoalDao.Properties.Timestamp).list().get(0);
+
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,15 +94,31 @@ public class GoalSetActivity extends AppCompatActivity {
 
             }
         });
+
+
         confirmButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                timeGoal = new Goal();
-                distGoal = new Goal();
-                timeGoal.setDistance(false); timeGoal.setValue(time);
-                distGoal.setDistance(true); distGoal.setValue(distance);
-                daoSession.getGoalDao().insert(timeGoal);
-                daoSession.getGoalDao().insert(distGoal);
+                boolean f = true;
+                Goal g = getLatestGoal();
+                if(g!=null){
+                    if(getDay((new Date()).getTime()).equals(getDay(g.getTimestamp()))){
+                        f = false;
+                    }
+                }
+
+                if(f) {
+                    timeGoal = new Goal();
+                    distGoal = new Goal();
+                    timeGoal.setDistance(false);
+                    timeGoal.setValue(time);
+                    distGoal.setDistance(true);
+                    distGoal.setValue(distance);
+                    distGoal.setTimestamp((new Date()).getTime());
+                    timeGoal.setTimestamp((new Date()).getTime());
+                    daoSession.getGoalDao().insert(timeGoal);
+                    daoSession.getGoalDao().insert(distGoal);
+                }
             }
         });
     }

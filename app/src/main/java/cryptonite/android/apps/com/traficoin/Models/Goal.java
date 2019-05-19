@@ -12,12 +12,15 @@ public class Goal {
     boolean distance;
     @Property(nameInDb = "value")
     int value;
+    @Property(nameInDb = "timestamp")
+    long timestamp;
     @Id(autoincrement = true)
     Long id;
-    @Generated(hash = 1175895034)
-    public Goal(boolean distance, int value, Long id) {
+    @Generated(hash = 773082644)
+    public Goal(boolean distance, int value, long timestamp, Long id) {
         this.distance = distance;
         this.value = value;
+        this.timestamp = timestamp;
         this.id = id;
     }
     @Generated(hash = 1149104271)
@@ -40,6 +43,12 @@ public class Goal {
     }
     public void setId(Long id) {
         this.id = id;
+    }
+    public long getTimestamp() {
+        return this.timestamp;
+    }
+    public void setTimestamp(long timestamp) {
+        this.timestamp = timestamp;
     }
     
 }
