@@ -17,7 +17,7 @@ public class shop extends AppCompatActivity {
         setContentView(R.layout.activity_shop);
         toProductList = findViewById(R.id.starbucks);
         toProductList.setOnClickListener(new View.OnClickListener() {
-            // The code in this method will be executed when the numbers View is clicked on.
+            //opening up the company_products activity
             @Override
             public void onClick(View view) {
                 Intent openProductList = new Intent(shop.this, shop_company_products.class);
