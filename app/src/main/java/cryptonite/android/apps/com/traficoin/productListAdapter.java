@@ -12,12 +12,15 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class productListAdapter extends RecyclerView.Adapter<productListAdapter.productListViewHolder> {
+    private ArrayList<companyProduct> productList;
 
-    public ImageView productPicture;
-    public TextView productName;
-    public TextView productPrice;
+
 
     public class productListViewHolder extends RecyclerView.ViewHolder {
+
+        public ImageView productPicture;
+        public TextView productName;
+        public TextView productPrice;
 
         public productListViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -29,7 +32,8 @@ public class productListAdapter extends RecyclerView.Adapter<productListAdapter.
     }
 
     public productListAdapter(ArrayList<companyProduct> companyProductList) {
-        
+        productList = companyProductList;
+
     }
 
     @NonNull
@@ -42,12 +46,15 @@ public class productListAdapter extends RecyclerView.Adapter<productListAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull productListViewHolder productListViewHolder, int i) {
-
+        companyProduct currentProduct = productList.get(i);
+        productListViewHolder.productPicture.setImageResource(currentProduct.getProductPicture());
+        productListViewHolder.productPrice.setText(currentProduct.getProductPrice());
+        productListViewHolder.productName.setText(currentProduct.getProductName());
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return productList.size();
     }
 
 
