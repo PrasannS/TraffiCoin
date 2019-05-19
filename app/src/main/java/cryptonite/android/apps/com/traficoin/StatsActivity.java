@@ -40,6 +40,7 @@ public class StatsActivity extends AppCompatActivity {
     }
 
     public List<Integer>genList(int code){
+
         List<Day>days = daoSession.getDayDao().queryBuilder().orderDesc(DayDao.Properties.Id).list();
         List<Integer> ans = new ArrayList<>();
         if(days.size()>=7){
