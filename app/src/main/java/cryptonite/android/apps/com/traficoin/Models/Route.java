@@ -21,9 +21,11 @@ public class Route {
     String name;
     @Property(nameInDb = "routeID")
     String routeID;
-    @Generated(hash = 1086039813)
+    @Property(nameInDb = "routeCode")
+    String routeCode;
+    @Generated(hash = 668539427)
     public Route(int occurances, double startlat, double startlng, double endlat,
-            double endlng, String name, String routeID) {
+            double endlng, String name, String routeID, String routeCode) {
         this.occurances = occurances;
         this.startlat = startlat;
         this.startlng = startlng;
@@ -31,6 +33,7 @@ public class Route {
         this.endlng = endlng;
         this.name = name;
         this.routeID = routeID;
+        this.routeCode = routeCode;
     }
     @Generated(hash = 467763370)
     public Route() {
@@ -77,6 +80,14 @@ public class Route {
     public void setRouteID(String routeID) {
         this.routeID = routeID;
     }
+    public String getRouteCode() {
+        return this.routeCode;
+    }
+    public void setRouteCode(String routeCode) {
+        this.routeCode = routeCode;
+    }
+
+
 
 
 }

@@ -1,19 +1,12 @@
 package cryptonite.android.apps.com.traficoin;
 
-import com.google.android.gms.location.DetectedActivity;
 
-import android.app.PendingIntent;
-import android.content.BroadcastReceiver;
-import android.content.Context;
+import android.app.Activity;
 import android.content.Intent;
-import android.content.IntentFilter;
-import android.support.v4.content.LocalBroadcastManager;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.TextView;
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends Activity {
     TextView t, test;
     public static final String TAG = LoginActivity.class.getSimpleName();
     LocationTracker lc;
