@@ -29,15 +29,17 @@ public class profile extends AppCompatActivity {
         CoinGeneratorClient cg = new CoinGeneratorClient(getApplication());
 
         averageMile = (TextView)findViewById(R.id.averageMile);
+
         toPurchaseHistory = (Button)findViewById(R.id.purchaseHistory);
         toPurchaseHistory.setOnClickListener(new View.OnClickListener() {
             //opening up the company_products activity
             @Override
             public void onClick(View view) {
-                Intent openPurchaseHistory = new Intent(profile.this, purchase_history.class);
+                Intent openPurchaseHistory = new Intent(getApplicationContext(), purchase_history.class);
                 startActivity(openPurchaseHistory);
             }
         });
+
         tripHistorybtn = (Button)findViewById(R.id.tripHistory);
         tripHistorybtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -46,6 +48,7 @@ public class profile extends AppCompatActivity {
                 startActivity(openTripHistory);
             }
         });
+
         averageMile.setText("avg/m"+cg.getAverage(true));
         averageTime.setText("avg/t"+cg.getAverage(false));
 
