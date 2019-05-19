@@ -16,6 +16,7 @@ import java.util.TimerTask;
 import cryptonite.android.apps.com.traficoin.Models.DaoSession;
 import cryptonite.android.apps.com.traficoin.Models.Day;
 import cryptonite.android.apps.com.traficoin.Models.Route;
+import cryptonite.android.apps.com.traficoin.Models.RouteDao;
 import cryptonite.android.apps.com.traficoin.Models.Traffic;
 import cryptonite.android.apps.com.traficoin.TrafficSDK.RetrofitClient;
 import cryptonite.android.apps.com.traficoin.TrafficSDK.TrafficResponse;
@@ -64,8 +65,8 @@ public class BackgroundService extends Service implements RetrofitClient.Traffic
     }
 
     public Route getRouteFromPriority(){
-        QueryBuilder<Route>qb  = new
-        List<Route> routes = daoSession.getRouteDao().loadAll();
+        QueryBuilder<Route>qb  = daoSession.getRouteDao().queryBuilder().where(RouteDao.Properties.Pending.eq(false));
+        List<Route> routes = qb.list();
         Route max = routes.get(0);
 
         for(Route r:routes){
