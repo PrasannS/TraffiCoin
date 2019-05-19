@@ -23,6 +23,7 @@
 
         //Name of Product
         <TextView
+            android:layout_marginLeft="10dp"
             android:textSize="20sp"
             android:layout_width="match_parent"
             android:layout_height="40dp"
