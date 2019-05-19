@@ -29,6 +29,7 @@ public class GoalSetActivity extends AppCompatActivity {
     public Goal distGoal, timeGoal;
     public DaoSession daoSession;
     private CoinGeneratorClient cg;
+    public LocationTracker lt;
 
     public String getDay(long ts){
         Date date = new Date(ts);
@@ -55,6 +56,7 @@ public class GoalSetActivity extends AppCompatActivity {
         timeBar = (SeekBar)findViewById(R.id.timeseekb);
         distancedisplay = (TextView)findViewById(R.id.distdisplay);
 
+        lt = new LocationTracker(this,getApplication());
         distanceBar.setMax(39);
         timeBar.setMax(57);
         cg = new CoinGeneratorClient(getApplication());
@@ -63,7 +65,6 @@ public class GoalSetActivity extends AppCompatActivity {
         daoSession = ((App) getApplication()).getDaoSession();
         final double distAvg = cg.getAverage(true), timeAvg = cg.getAverage(false);
         //TODO This is where the minutes from rush hour will go
-        cg.getCoins(getLatestGoal(1).getValue(),getLatestGoal(0).getValue(),10);
         distanceBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
@@ -122,6 +123,7 @@ public class GoalSetActivity extends AppCompatActivity {
                     timeGoal.setTimestamp((new Date()).getTime());
                     daoSession.getGoalDao().insert(timeGoal);
                     daoSession.getGoalDao().insert(distGoal);
+                    cg.getCoins(getLatestGoal(1).getValue(),getLatestGoal(0).getValue(),lt.getRushMinutes());
                 }
                 else
                     Toast.makeText(GoalSetActivity.this, "Sorry, you have already set a goal today.", Toast.LENGTH_LONG).show();
