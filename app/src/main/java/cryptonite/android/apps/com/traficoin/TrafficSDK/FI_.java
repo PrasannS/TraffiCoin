@@ -42,7 +42,7 @@ public class FI_ implements Serializable, Parcelable
     protected FI_(Parcel in) {
         this.tMC = ((TMC) in.readValue((TMC.class.getClassLoader())));
         in.readList(this.sHP, (java.lang.Object.class.getClassLoader()));
-        in.readList(this.cF, (cryptonite.android.apps.com.traficoin.CF.class.getClassLoader()));
+        in.readList(this.cF, (CF.class.getClassLoader()));
     }
 
     /**

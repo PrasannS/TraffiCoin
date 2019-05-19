@@ -34,7 +34,7 @@ public class FI implements Serializable, Parcelable
     private final static long serialVersionUID = -4669121338302995966L;
 
     protected FI(Parcel in) {
-        in.readList(this.fI, (cryptonite.android.apps.com.traficoin.FI_.class.getClassLoader()));
+        in.readList(this.fI, (FI.class.getClassLoader()));
     }
 
     /**
