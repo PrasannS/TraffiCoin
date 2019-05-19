@@ -6,6 +6,8 @@ import android.os.IBinder;
 import android.widget.Button;
 import android.widget.Toast;
 
+import org.greenrobot.greendao.query.QueryBuilder;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
@@ -30,18 +32,7 @@ public class BackgroundService extends Service implements RetrofitClient.Traffic
         //Declare the timer
         Timer t = new Timer();
 //Set the schedule function and rate
-        t.scheduleAtFixedRate(new TimerTask() {
-                                  @Override
-                                  public void run() {
-                                      //Called each time when 1000 milliseconds (1 second) (the period parameter)
-                                        RetrofitClient retrofitClient = new RetrofitClient(BackgroundService.this);
-                                        retrofitClient.getResponse();
-                                  }
-                              },
-//Set how long before to start calling the TimerTask (in milliseconds)
-                0,
-//Set the amount of time between each execution (in milliseconds)
-                18000000);
+        while (get)
     }
 
     @Override
@@ -73,6 +64,7 @@ public class BackgroundService extends Service implements RetrofitClient.Traffic
     }
 
     public Route getRouteFromPriority(){
+        QueryBuilder<Route>qb  = new
         List<Route> routes = daoSession.getRouteDao().loadAll();
         Route max = routes.get(0);
 
