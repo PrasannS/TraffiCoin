@@ -195,7 +195,4 @@ public class CoinGeneratorClient {
         return sum;
     }
 
-
-
-
 }
