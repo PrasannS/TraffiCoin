@@ -1,5 +1,6 @@
 package cryptonite.android.apps.com.traficoin;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -123,7 +124,10 @@ public class GoalSetActivity extends AppCompatActivity {
                     daoSession.getGoalDao().insert(distGoal);
                 }
                 else
-                    Toast.makeText(getApplicationContext(), "Sorry, you have already set a goal today.", Toast.LENGTH_LONG);
+                    Toast.makeText(GoalSetActivity.this, "Sorry, you have already set a goal today.", Toast.LENGTH_LONG);
+
+                Intent intent = new Intent(GoalSetActivity.this, DashboardActivity.class);
+                startActivity(intent);
             }
         });
     }

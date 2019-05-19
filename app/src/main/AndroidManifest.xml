@@ -38,6 +38,7 @@
         <activity android:name=".shop_company_products" android:screenOrientation="portrait"/>
         <activity android:name=".GoalSetActivity" android:screenOrientation="portrait" />
         <activity android:name=".shop"/>
+        <activity android:name=".profile"/>
     </application>
 
 </manifest>
