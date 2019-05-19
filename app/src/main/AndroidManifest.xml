@@ -18,8 +18,9 @@
             android:name=".BackgroundService"
             android:enabled="true"
             android:exported="true"></service>
+	
+	    <activity android:name=".RegistrationActivity"></activity>
 
-        <activity android:name=".RegistrationActivity"></activity>
         <activity
             android:name=".LoginActivity"
             android:screenOrientation="portrait">
@@ -29,13 +30,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <service android:name=".DetectedActivityIntentService" />
         <service android:name=".ActivityDetectionService" />
-        <activity android:name=".DashboardActivity" />
-        <activity android:name=".StatsActivity" />
-        <activity android:name=".shop_company_products" />
-        <activity android:name=".GoalSetActivity" />
+
+        <activity android:name=".DashboardActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".StatsActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".shop_company_products" android:screenOrientation="portrait"/>
+        <activity android:name=".GoalSetActivity" android:screenOrientation="portrait" />
         <activity android:name=".shop"/>
         <activity android:name=".profile"/>
     </application>

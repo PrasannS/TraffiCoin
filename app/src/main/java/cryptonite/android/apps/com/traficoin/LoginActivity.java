@@ -6,13 +6,14 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
 import android.widget.Button;
 import android.widget.TextView;
 
 public class LoginActivity extends Activity {
-    TextView t, test;
-    public static final String TAG = LoginActivity.class.getSimpleName();
-    LocationTracker lc;
+
+    TextView welcome;
     Button signIn;
 
 
@@ -22,8 +23,12 @@ public class LoginActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_login);
-        lc = new LocationTracker(this,getApplication());
+        welcome = (TextView) findViewById(R.id.welcomeTxt);
+        Animation in = new AlphaAnimation(0.0f, 1.0f);
+        in.setDuration(3000);
+        welcome.startAnimation(in);
         signIn = (Button)findViewById(R.id.signInBtn);
         signIn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -40,14 +45,6 @@ public class LoginActivity extends Activity {
                 startActivity(in);
             }
         });
-    }
-    // register the RX and start up the ActivityDetectionService service
-    @Override
-    protected void onStart() {
-        super.onStart();
-        startService(new Intent(this, ActivityDetectionService.class));
-        startService(new Intent(getBaseContext(), BackgroundService.class));
-        lc.start(this);
     }
 
 }
