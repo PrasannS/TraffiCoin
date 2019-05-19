@@ -33,7 +33,24 @@ public class BackgroundService extends Service implements RetrofitClient.Traffic
         //Declare the timer
         Timer t = new Timer();
 //Set the schedule function and rate
-        while (get)
+        Route tempa = getRouteFromPriority();
+        while (tempa!=null){
+            final Route temp = tempa;
+            List<Traffic> traffics = new ArrayList<>();
+            t.scheduleAtFixedRate(new TimerTask() {
+                                      @Override
+                                      public void run() {
+                                          //Called each time when 1000 milliseconds (1 second) (the period parameter)
+                                          RetrofitClient retrofitClient = new RetrofitClient(BackgroundService.this);
+                                          retrofitClient.getResponse(temp.getStartlat(), temp.getStartlng(), temp.getEndlat(), temp.getEndlng());
+
+                                      }
+                                  },
+//Set how long before to start calling the TimerTask (in milliseconds)
+                    0,
+//Set the amount of time between each execution (in milliseconds)
+                    18000000);
+        }
     }
 
     @Override

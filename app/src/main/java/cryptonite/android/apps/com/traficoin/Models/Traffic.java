@@ -16,20 +16,20 @@ public class Traffic {
     double endhours;
     @Property(nameInDb = "endmins")
     double endmins;
-    @Property(nameInDb = "rf")
-    double rf;
+    @Property(nameInDb = "jf")
+    double jf;
     @Property(nameInDb = "routeid")
     String routeID;
     @Id(autoincrement = true)
     Long Id;
-    @Generated(hash = 1159270496)
+    @Generated(hash = 1758926885)
     public Traffic(double starthours, double startmins, double endhours,
-            double endmins, double rf, String routeID, Long Id) {
+            double endmins, double jf, String routeID, Long Id) {
         this.starthours = starthours;
         this.startmins = startmins;
         this.endhours = endhours;
         this.endmins = endmins;
-        this.rf = rf;
+        this.jf = jf;
         this.routeID = routeID;
         this.Id = Id;
     }
@@ -60,12 +60,6 @@ public class Traffic {
     public void setEndmins(double endmins) {
         this.endmins = endmins;
     }
-    public double getRf() {
-        return this.rf;
-    }
-    public void setRf(double rf) {
-        this.rf = rf;
-    }
     public String getRouteID() {
         return this.routeID;
     }
@@ -77,5 +71,11 @@ public class Traffic {
     }
     public void setId(Long Id) {
         this.Id = Id;
+    }
+    public double getJf() {
+        return this.jf;
+    }
+    public void setJf(double jf) {
+        this.jf = jf;
     }
 }
