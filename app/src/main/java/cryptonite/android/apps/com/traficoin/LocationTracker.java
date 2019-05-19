@@ -29,6 +29,7 @@ import java.util.UUID;
 
 import cryptonite.android.apps.com.traficoin.Models.DaoSession;
 import cryptonite.android.apps.com.traficoin.Models.Route;
+import cryptonite.android.apps.com.traficoin.Models.Traffic;
 import cryptonite.android.apps.com.traficoin.Models.Trip;
 
 public class LocationTracker
@@ -220,5 +221,30 @@ public class LocationTracker
             }
         }
         return null;
+    }
+
+    public static int getTimeFromRush(int sHr, int sMin, int eHr, int eMin, ArrayList<Traffic> rHrTimes)
+    {
+        getTimeDif(sHr,sMin,eHr,eMin);
+        int min = 1 << 17;
+        for (int i = 0; i < rHrTimes.size(); i++)
+        {
+            if (rHrTimes.get(i).getStarthours() < sHr)
+                min = Math.min(min, getTimeDif((int) rHrTimes.get(i).getStarthours(), (int) rHrTimes.get(i).getStartmins(), sHr, sMin));
+            else
+                min = Math.min(min, getTimeDif(sHr, sMin, (int) rHrTimes.get(i).getStarthours(), (int) rHrTimes.get(i).getStartmins()));
+        }
+        return min;
+    }
+    public static int getTimeDif(int sHr, int sMin, int eHr, int eMin)
+    {
+        if (eHr < sHr)
+            eHr += 24;
+        if (eMin < sMin)
+        {
+            eMin += 60;
+            eHr -= 1;
+        }
+        return (eHr - sHr) * 60 + eMin - sMin;
     }
 }

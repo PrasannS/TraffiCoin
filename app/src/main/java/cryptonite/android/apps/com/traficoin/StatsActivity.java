@@ -19,21 +19,28 @@ public class StatsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_stats);
         LineChart distanceChart = (LineChart) findViewById(R.id.distanceChart);
-        List<Entry> entries = new ArrayList<Entry>();
-        entries.add(new Entry(10, 10));
-        entries.add(new Entry(20, 30));
-        LineDataSet dataSet = new LineDataSet(entries, "Label"); // add entries to dataset
-        dataSet.setColor(1);
-        dataSet.setValueTextColor(1);
-        LineData lineData = new LineData(dataSet);
-        distanceChart.setData(lineData);
-        distanceChart.invalidate();
+        LineChart timeChart = (LineChart) findViewById(R.id.timeChart);
+        LineChart coinChart = (LineChart) findViewById(R.id.coinsChart);
+        LineChart nonDrivingChart = (LineChart) findViewById(R.id.nonDrivingTimeChart);
 
         ViewPager viewPager = findViewById(R.id.viewPager);
         viewPager.setOffscreenPageLimit(1);
         SwipeAdapter swipeAdapter = new SwipeAdapter(getSupportFragmentManager());
         viewPager.setAdapter(swipeAdapter);
         viewPager.setCurrentItem(0);
+    }
+
+    private void loadChart(LineChart chart, ArrayList<Integer> x, ArrayList<Integer> y){
+        List<Entry> entries = new ArrayList<>();
+        for(int i = 0; i < x.size(); i++){
+            entries.add(new Entry(x.get(i), y.get(i)));
+        }
+        LineDataSet dataSet = new LineDataSet(entries, "Label");
+        LineData lineData = new LineData(dataSet);
+        chart.setData(lineData);
+        dataSet.setColor(1);
+        dataSet.setValueTextColor(1);
+        chart.invalidate();
 
     }
 }
