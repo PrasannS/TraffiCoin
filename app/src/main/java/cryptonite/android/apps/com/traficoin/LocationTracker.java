@@ -35,7 +35,6 @@ public class LocationTracker
 {
     public static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
     public static final String TAG = LoginActivity.class.getSimpleName();
-    TextView t, test;
     String cur = "Unknown";
     ArrayList<String> prev = new ArrayList<>();
     double sLat, sLong;
@@ -63,11 +62,7 @@ public class LocationTracker
 
         //REMEMBER TO START SERVICE IN CLASS, CODE NOT IN HERE
     }
-    void setTextView(TextView t, TextView test)
-    {
-        this.t = t;
-        this.test = test;
-    }
+
     BroadcastReceiver mActivityBroadcastReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -112,7 +107,6 @@ public class LocationTracker
         }
         Log.d(TAG, "broadcast:onReceive(): Activity is " + label
                 + " and confidence level is: " + confidence);
-        t.setText("You are : " + cur + ", Recording: " + label + "next" + prev);
         if (cur.equals("Unknown") && !label.equals("Unknown"))
             cur = label;
         if (!prev.contains(cur) && prev.size() >= 10)
@@ -140,9 +134,8 @@ public class LocationTracker
                                     double eLat = location.getLatitude();
                                     int hr = cal.get(Calendar.HOUR_OF_DAY);
                                     int min = cal.get(Calendar.MINUTE);
-                                    test.setText(hr + ":" + min + ": You are at: " + sLat + " , " + sLong);
                                     if (!cur.equals("Unknown") && !cur.equals("Still") && !close(sHour, sMin, hr, min))
-                                        addTrip(sLat,sLong,eLat,eLong,sHour,sMin,hr,min, cur);
+                                        addTrip(sLat,sLong,eLat,eLong,sHour,sMin,hr,min, cur, (long) starttime, (new Date()).getTime());
 
                                     Toast.makeText(con, "SHOULDVE RUN", Toast.LENGTH_LONG);
 
@@ -167,6 +160,7 @@ public class LocationTracker
             prev.add(label);
         }
     }
+
     public boolean close(int sHr, int sMin, int eHr, int eMin)
     {
         if (eHr < sHr)
@@ -178,7 +172,7 @@ public class LocationTracker
         return false;
     }
     public void addTrip(double sLat, double sLong, double eLat, double eLong, int sHr, int sMin, int eHr, int eMin, String type, long st, long en)
-
+    {
         Trip trip = new Trip();
         trip.setStartlat(sLat);
         trip.setEndlat(eLat);
@@ -211,6 +205,7 @@ public class LocationTracker
 
         daoSession.getTripDao().insert(trip);
 
+
     }
 
     public String getRouteKey(double elat, double elng,double slat, double slng){
@@ -225,4 +220,5 @@ public class LocationTracker
             }
         }
         return null;
+    }
 }
