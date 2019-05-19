@@ -14,16 +14,20 @@ public class Day {
     String date;
     @Property(nameInDb = "miles")
     double miles;
-    @Property(nameInDb = "hours")
-    double hours;
+    @Property(nameInDb = "minutes")
+    double minutes;
+    @Property(nameInDb = "bminutes")
+    double bminutes;
     @Property(nameInDb = "dayID")
     String dayID;
-    @Generated(hash = 1955057148)
-    public Day(Long id, String date, double miles, double hours, String dayID) {
+    @Generated(hash = 1690206404)
+    public Day(Long id, String date, double miles, double minutes, double bminutes,
+            String dayID) {
         this.id = id;
         this.date = date;
         this.miles = miles;
-        this.hours = hours;
+        this.minutes = minutes;
+        this.bminutes = bminutes;
         this.dayID = dayID;
     }
     @Generated(hash = 866989762)
@@ -47,17 +51,23 @@ public class Day {
     public void setMiles(double miles) {
         this.miles = miles;
     }
-    public double getHours() {
-        return this.hours;
-    }
-    public void setHours(double hours) {
-        this.hours = hours;
-    }
     public String getDayID() {
         return this.dayID;
     }
     public void setDayID(String dayID) {
         this.dayID = dayID;
+    }
+    public double getMinutes() {
+        return this.minutes;
+    }
+    public void setMinutes(double minutes) {
+        this.minutes = minutes;
+    }
+    public double getBminutes() {
+        return this.bminutes;
+    }
+    public void setBminutes(double bminutes) {
+        this.bminutes = bminutes;
     }
 
 }
